@@ -29,7 +29,7 @@
 ### Usabilidade
 
 - Correr uma plataforma gráfica;
-- Incluir tutorial sobre funcionamento da plataforma.	
+- Incluir tutorial sobre funcionamento da plataforma.
 
 ### Fiabilidade
 
@@ -48,6 +48,22 @@
 ## Glossário
 
 ## Modelo de Casos de Uso
+
+### Tabela dos Casos de Uso
+
+### Narrativa dos Casos de uso
+
+**Gerir lista de empregados do supermercado:**
+
+
+
+
+
+- Consultar loja e secção de um empregado;
+- Submeter as vagas disponíveis das secções por loja;
+- Consulta/Pedido de transferência de um empregado para uma secção de uma nova loja.
+- Atribuir pontuação a um empregado;
+- Processar tranferência de um empregado entre lojas.
 
 ## Diagramas de Sequencia do Sistem
 
