@@ -55,12 +55,16 @@
 
 **Gerir lista de empregados do supermercado:**
 
+O gerente responsável por uma loja faz login no sistema e abre a lista de funcionários da loja. Aqui deve ter duas opções: a opção de criar um novo empregado ou de consultar/arquivar um empregado. Para criar um novo empregado, o gerente insere a informação básica do mesmo (nome, idade e contacto). Deve também escolher que tipo de empregado é (sub-gerente ou funcionário), e em que loja/secção vai trabalhar. No caso do novo empregado ser um gerente de loja, esta acção deve ser realizada por um gerente distrital, que deve ter a opção extra de registar um gerente de loja. Para consultar/arquivar informações sobre um funcionário, deve clicar num funcionário espeficio na lista apresentada.
+
+**Consultar loja e secção de um empregado:** 
+
+Qualquer um dos gerentes (responsável por loja, subgerente e gerente distrital) pode fazer login no sistema e abrir a lista de funcionários da loja. Ao clicar num empregado, deve ser possivél consultar a loja e secção onde o mesmo trabalha.
+
+**Submeter as vagas disponíveis das secções por loja:**
 
 
 
-
-- Consultar loja e secção de um empregado;
-- Submeter as vagas disponíveis das secções por loja;
 - Consulta/Pedido de transferência de um empregado para uma secção de uma nova loja.
 - Atribuir pontuação a um empregado;
 - Processar tranferência de um empregado entre lojas.
