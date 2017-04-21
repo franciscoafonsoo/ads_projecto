@@ -4,13 +4,26 @@
 
 ## Caso de Desenvolvimento
 
+|    Disciplina     |        Artefacto        | Arranque | Elaboração 1 |
+| :---------------: | :---------------------: | :------: | :----------: |
+| Modelo de Negócio |    Modelo de Dóminio    |          |      S       |
+|    Requisitos     | Caso de Desenvolvimento |    S     |      R       |
+|                   |   Lista de Requisitos   |    S     |              |
+|                   |        Glossário        |    S     |      R       |
+|                   | Modelos de Casos de Uso |    S     |      R       |
+|                   | Tabela de Casos de Uso  |    S     |      R       |
+|                   |    Modelo de Desenho    |          |      S       |
+|                   | Diagramas de interação  |          |      S       |
+
 ## Lista de Requisitos
 
 ### Funcionais
 
 - Gerir lista de empregados do supermercado: adicionar, actualizar e arquivar dados dos funcionários.
+- Consultar loja e secção de um empregado.
 - Submeter as vagas disponíveis das secções por loja.
 - Consulta/Pedido de transferência de um empregado para uma secção de uma nova loja.
+- Atribuir pontuação a um empregado.
 - Processar tranferência de um empregado entre lojas.
 
 ### Usabilidade
