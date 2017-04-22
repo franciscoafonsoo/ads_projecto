@@ -19,6 +19,7 @@
 
 ### Funcionais
 
+- Efectuar o login no sistema. Funcionalidade disponível para: Gerente de Loja, Gerente Distrital e SubGerente.
 - Gerir lista de empregados do supermercado: adicionar, actualizar e arquivar dados dos funcionários;
 - Consultar loja e secção de um empregado;
 - Submeter as vagas disponíveis das secções por loja;
@@ -59,7 +60,7 @@ O gerente responsável por uma loja faz login no sistema e abre a lista de funci
 
 **Consultar loja e secção de um empregado:** 
 
-Qualquer um dos gerentes (responsável por loja, subgerente e gerente distrital) pode fazer login no sistema e abrir a lista de funcionários da loja. Ao clicar num empregado, deve ser possivél consultar a loja e secção onde o mesmo trabalha.
+Qualquer um dos gerentes (responsável por loja, sub gerente e gerente distrital) pode fazer login no sistema e abrir a lista de funcionários da loja. Ao clicar num empregado, deve ser possível consultar a loja e secção onde o mesmo trabalha.
 
 **Submeter as vagas disponíveis das secções por loja:**
 
