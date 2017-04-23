@@ -146,7 +146,9 @@ Qualquer um dos gerentes (responsável por loja, sub gerente e gerente distrital
 
 ## Modelos de Desenho
 
+
 ## Diagramas de Colaboração
+
 
 ## Descrição de casos de uso
 
@@ -158,7 +160,7 @@ Ator Primário:
 
 Interessados e Interesses:
     	
-	Gerente (loja ou distrital) – Quer inserir um novo empregado no sistema, para que este fique registado na cadeia da loja.
+	Gerente de Loja – Quer inserir um novo empregado no sistema, para que este fique registado na cadeia da loja.
     	Empregado – Quer começar a trabalhar na empresa estando registado no sistema para que as suas ações/atividades fiquem registadas.
 
 Pré-Condições:
@@ -209,7 +211,7 @@ Interessados e Interesses:
 Pré-Condições:
 	
 	Funcionário tem que estar identificado e autenticado no sistema.
-	O pedido só pode ser efetuado até ao dia 10 do mês corrente. 
+	O pedido de trânsferência para o mês n só pode ser efetuado até ao dia 10 do mês n-1. 
 	Tem de existir vagas disponiveis para onde o funcionário pode transferir.
 	O Funcionário ainda não pedio transferência
 
@@ -230,32 +232,38 @@ Extensões:
     2a. O actor pede ao sistema para filtrar as vagas por loja ou secção.
 	1. o sistema apresenta todas as vagas por loja ou secção escolhida pelo actor
 
-### PROCESSAR TRANSFERÊNCIA
+### PROCESSAR TRANSFERÊNCIAS
 
 Ator Primário:
 
-	cenas
+	Gestor de Loja
 		
 Interessados e Interesses:
 	
-	cenas
+	Gerente de Loja - Quer verificar que as transferencias, que o sistema atribui, estão corretas e processar as mesmas
+	Empregado - Quer entra na vaga a que se candidatou
 
 Pré-Condições:
 	
-	cenas
+    	Gerente tem que estar identificado e autenticado no sistema.
+	Há pelo menos uma transferência para processar.
+	O processamento para as transferências do mês n têm de ser feitas entre os dias 11 e 18 do mês n-1
 
 Pós-Condições:
 	
-	cenas
+	A(s) transferência(s) são efetuada(s) com sucesso.
 
 Cenário Principal de Sucesso:
 
-    1. cenas
+    1. O gerente indica que quer iniciar o processo de transferência.
+    2. O sistema processa os pedidos de transferência e apresenta-os para que sejam confirmados.
+    3. O gerente revê e confere que está tudo certo.
+    4. O sistema processa as trânsferências e indica que foi tudo processado com sucesso.
 
 Extensões:
 
-    xa. cenas
-	1.cenas
+    3a. Ao rever, o gerente vê que houve um problema na atribuição das vagas e pede ao sistema para voltar a processar os pedidos.
+	1. O sistema apresenta a atribuição para que seja confirmada.
 
 
 ## Diagramas de Sequência
