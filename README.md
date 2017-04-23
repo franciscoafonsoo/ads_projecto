@@ -240,12 +240,12 @@ Ator Primário:
 		
 Interessados e Interesses:
 	
-	Gerente de Loja - Quer verificar que as transferencias, que o sistema atribui, estão corretas e processar as mesmas
+	Gerente de Loja - Quer verificar que as transferencias, que o sistema atribui, estão corretas e confirmar as mesmas
 	Empregado - Quer entra na vaga a que se candidatou
 
 Pré-Condições:
 	
-    	Gerente tem que estar identificado e autenticado no sistema.
+	Gerente tem que estar identificado e autenticado no sistema.
 	Há pelo menos uma transferência para processar.
 	O processamento para as transferências do mês n têm de ser feitas entre os dias 11 e 18 do mês n-1
 
