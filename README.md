@@ -150,24 +150,24 @@ Qualquer um dos gerentes (responsável por loja, sub gerente e gerente distrital
 
 ## Descrição de casos de uso
 
-###INSERIR EMPREGADO
+### INSERIR EMPREGADO
 
-	Ator Primário:
+Ator Primário:
 
-    		Gerente de Loja	
+    	Gerente de Loja	
 
-	Interessados e Interesses:
-    		Gerente (loja ou distrital) – Quer inserir um novo empregado no sistema, para que este fique registado na cadeia da loja.
-    		Empregado – Quer começar a trabalhar na empresa estando registado no sistema para que as suas ações/atividades fiquem registadas.
+Interessados e Interesses:
+    	
+	Gerente (loja ou distrital) – Quer inserir um novo empregado no sistema, para que este fique registado na cadeia da loja.
+    	Empregado – Quer começar a trabalhar na empresa estando registado no sistema para que as suas ações/atividades fiquem registadas.
 
+Pré-Condições:
 
-	Pré-Condições:
-    		Gerente tem que estar identificado e autenticado no sistema.
+    	Gerente tem que estar identificado e autenticado no sistema.
 
-	Pós-Condições:
-    		Empregado é inserido no sistema da empresa, ficando associado um identificador único ao mesmo e uma password.
+Pós-Condições:
 
-
+  	Empregado é inserido no sistema da empresa, ficando associado um identificador único ao mesmo e uma password.
 
 
 Cenário Principal de Sucesso:
@@ -196,58 +196,77 @@ Extensões:
         2.i. O gerente confirma a mensagem, voltando ao ponto 2 de modo a emendar o campo e prossegue para os passos seguintes.
         2.ii. O gerente cancela a criação de um novo empregado, voltando ao menu principal.
 
-###PEDIR TRANSFERÊNCIA:
+### PEDIR TRANSFERÊNCIA:
 
 Ator Primário:
-​	Funcionário
+
+	Funcionário
+		
 Interessados e Interesses:
-​	Funcionário – Quer efetuar um pedido de transferência para outra loja ou para outra secção.
-
-​	Sub-gerente – Quer funcionários para preencher as vagas na sua secção.
-
-​	Gerente - Quer funcionários para preencher as vagas na sua loja.
+	
+	Funcionário – Quer efetuar um pedido de transferência para outra loja ou para outra secção.
 
 Pré-Condições:
-
-​	Funcionário tem que estar identificado e autenticado no sistema.
-
-​	O pedido só pode ser efetuado até ao dia 10 do mês corrente. 
-
-​	Tem de existir vagas disponiveis para onde o funcionário pode transferir.
+	
+	Funcionário tem que estar identificado e autenticado no sistema.
+	O pedido só pode ser efetuado até ao dia 10 do mês corrente. 
+	Tem de existir vagas disponiveis para onde o funcionário pode transferir.
+	O Funcionário ainda não pedio transferência
 
 Pós-Condições:
-
-​	O pedido de transferência é efetuado com sucesso. 
-
-​	Calculo da pontuação específica para uma vaga é guardado com sucesso.
+	
+	O pedido de transferência é efetuado com sucesso. 
+	Cálculo da pontuação específica para a vaga é guardado com sucesso.
 
 Cenário Principal de Sucesso:
-​	1- O actor consulta as vagas disponíveis;
 
-​	2- O sistema apresenta todas as vagas disponíveis, com a seguinte informação: identificação da loja, nome da secção, numéro de vagas e mês de abertura da vaga. 
-
-​	3- O actor indica ao sistema a que vaga se pretende registar.
-
-​	4- O sistema confirma o pedido, mostrando o numero de identificação do processo.
+    1. O actor consulta as vagas disponíveis;
+    2. O sistema apresenta todas as vagas disponíveis, com a seguinte informação: identificação da loja, nome da secção, numéro de vagas e mês de abertura da vaga. 
+    3. O actor indica ao sistema a que vaga se pretende candidatar.
+    4. O sistema confirma o pedido, mostrando o numero de identificação do processo.
 
 Extensões:
 
-​	2a. O actor pede ao sistema para filtrar as vagas por loja ou secção.
+    2a. O actor pede ao sistema para filtrar as vagas por loja ou secção.
+	1. o sistema apresenta todas as vagas por loja ou secção escolhida pelo actor
 
-​		1. o sistema apresenta todas as vagas por loja ou secção escolhida pelo 
-​	
+### PROCESSAR TRANSFERÊNCIA
 
+Ator Primário:
 
-**Extensões:**
+	cenas
+		
+Interessados e Interesses:
+	
+	cenas
 
+Pré-Condições:
+	
+	cenas
 
+Pós-Condições:
+	
+	cenas
 
-​	2- O funcionário filtra as vagas disponíveis por loja ou secção.
+Cenário Principal de Sucesso:
+
+    1. cenas
+
+Extensões:
+
+    xa. cenas
+	1.cenas
 
 
 ## Diagramas de Sequência
 
-###INSERIR EMPREGADO:
+### INSERIR EMPREGADO:
 
 
-###PEDIR TRANSFERÊNCIA:
+### PEDIR TRANSFERÊNCIA:
+
+
+### PROCESSAR TRANSFERÊNCIA:
+
+
+
