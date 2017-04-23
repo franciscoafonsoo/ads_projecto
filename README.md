@@ -221,7 +221,7 @@ Extensões:
 
 ​	2a. O actor pede ao sistema para filtrar as vagas por loja ou secção.
 
-​		1. 
+​		1. o sistema apresenta todas as vagas por loja ou secção escolhida pelo 
 ​	
 
 
