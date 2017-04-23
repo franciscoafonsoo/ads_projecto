@@ -255,14 +255,14 @@ Pós-Condições:
 
 Cenário Principal de Sucesso:
 
-    1. O gerente indica que quer iniciar o processo de transferência.
-    2. O sistema processa os pedidos de transferência e apresenta-os para que sejam confirmados.
-    3. O gerente revê e confere que está tudo certo.
-    4. O sistema processa as trânsferências e indica que foi tudo processado com sucesso.
+    1. O gerente indica que quer iniciar o processo de transferência.
+    2. O sistema processa os pedidos de transferência e apresenta-os para que sejam confirmados.
+    3. O gerente revê e confere que está tudo certo.
+    4. O sistema processa as trânsferências e indica que foi tudo processado com sucesso.
 
 Extensões:
 
-    3a. Ao rever, o gerente vê que houve um problema na atribuição das vagas e pede ao sistema para voltar a processar os pedidos.
+    3a. Ao rever, o gerente vê que houve um problema na atribuição das vagas e pede ao sistema para voltar a processar os pedidos.
 	1. O sistema apresenta a atribuição para que seja confirmada.
 
 
