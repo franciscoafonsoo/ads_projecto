@@ -150,7 +150,7 @@ Qualquer um dos gerentes (responsável por loja, sub gerente e gerente distrital
 
 ## Descrição de casos de uso
 
-INSERIR EMPREGADO
+###INSERIR EMPREGADO
 
 	Ator Primário:
 
@@ -196,42 +196,7 @@ Extensões:
         2.i. O gerente confirma a mensagem, voltando ao ponto 2 de modo a emendar o campo e prossegue para os passos seguintes.
         2.ii. O gerente cancela a criação de um novo empregado, voltando ao menu principal.
 
-## Diagramas de Sequência
-
-Ator Primário:
-
-    Gerente / Gerente Distrital
-Interessados e Interesses:
-    Gerente – Quer inserir um novo empregado no sistema, para que este fique registado.
-    Funcionário – Quer começar a trabalhar na empresa.
-Pré-Condições:
-    Gerente tem que estar identificado e autenticado no sistema.
-    Se o funcionário a inserir for um gerente de loja, o gerente tem que ser distrital.
-Pós-Condições:
-    Funcionário é inserido no sistema da empresa.
-Cenário Principal de Sucesso:
-    1. O gerente inicia o registo de um novo funcionário no sistema;
-    2. O sistema apresenta campos para preencher o nome, número de identificação fiscal, data de nascimento, telemóvel e secção do novo funcionário.
-    3. Depois dos dados submitidos, o sistema deve apresentar os campos submitidos mais a loja (baseada na loja do actor primário) e o salário (calculado baseado na secção) e pedir para o actor primário confirmar os dados apresentados.
-    4. O sistema apresenta o resultado da submissão (Funcionário registado com sucesso) e o número de funcionário.
-Extensões:
-    2a. O número de identificação não tem 9 dígitos. 
-        1. O sistema mostra uma mensagem a avisar que o número de identificação não está correcto.
-        2.i. O actor confirma a mensagem, e volta ao ponto 2.
-        2.ii. O actor cancela a criação de um novo funcionário, voltando ao menu principal.
-    3a. O actor não preenche todos os campos.
-        1. O sistema mostra uma mensagem a dizer que não preencheu um campo específico.
-        2.i. O actor confirma a mensagem, e volta ao ponto 2.
-        2.ii. O actor cancela a criação de um novo funcionário, voltando ao menu principal.
-    4a. O sistema verifica que o funcionário já existe na lista de funcionários.
-        1. O sistema mostra uma mensagem a informar que o funcionário já estava registado na empresa e conclui a operação.
-        2.i. O actor confirma a mensagem, e volta ao ponto 2.
-        2.ii. O actor cancela a criação de um novo funcionário, voltando ao menu principal.
-    5a. O sistema verifica que o número de identificação fiscal já existe agregado a um funcionário.
-        1. O sistema mostra uma mensagem a informar que o número de identificação fiscal já se encontra agregado a outro funcionário.
-        2.i. O actor confirma a mensagem, e volta ao ponto 2.
-        2.ii. O actor cancela a criação de um novo funcionário, voltando ao menu principal.
-
+###PEDIR TRANSFERÊNCIA:
 
 Ator Primário:
 ​	Funcionário
@@ -278,3 +243,11 @@ Extensões:
 
 
 ​	2- O funcionário filtra as vagas disponíveis por loja ou secção.
+
+
+## Diagramas de Sequência
+
+###INSERIR EMPREGADO:
+
+
+###PEDIR TRANSFERÊNCIA:
