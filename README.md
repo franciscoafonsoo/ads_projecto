@@ -148,6 +148,54 @@ Qualquer um dos gerentes (responsável por loja, sub gerente e gerente distrital
 
 ## Diagramas de Colaboração
 
+## Descrição de casos de uso
+
+INSERIR EMPREGADO
+
+	Ator Primário:
+
+    		Gerente de Loja	
+
+	Interessados e Interesses:
+    		Gerente (loja ou distrital) – Quer inserir um novo empregado no sistema, para que este fique registado na cadeia da loja.
+    		Empregado – Quer começar a trabalhar na empresa estando registado no sistema para que as suas ações/atividades fiquem registadas.
+
+
+	Pré-Condições:
+    		Gerente tem que estar identificado e autenticado no sistema.
+
+	Pós-Condições:
+    		Empregado é inserido no sistema da empresa, ficando associado um identificador único ao mesmo e uma password.
+
+
+
+
+Cenário Principal de Sucesso:
+
+    1. O gerente inicia o registo de um novo empregado no sistema;
+    2. O sistema apresenta campos para preencher o nome, número de identificação fiscal, data de nascimento, telemóvel e secção do novo empregado.
+    3. Depois do gerente preencher os dados necessários no formulário, o mesmo submete o registo no sistema.
+    4. Após a submissão, o sistema verifica que os campos foram preenchidos corretamente e apresenta os campos submetidos anteriormente, a loja em que se está a adicionar o empregado  (baseada na loja do ator primário) e o salário (calculado baseado na secção), pedindo a confirmação desta informação de modo a concluir o registo do novo empregado no sistema sem erros e com sucesso.
+    5. Aquando a confirmação do registo pelo gerente, o sistema verifica que o novo empregado ainda não existe na lista de funcionários registados e que os campos são válidos.
+    6. O sistema apresenta o resultado da submissão (Empregado registado com sucesso), apresentando o número de identificação único do novo empregado e uma password temporária para que o funcionário consiga aceder ao sistema pela primeira vez, para que depois possa alterar.
+
+Extensões:
+
+    4a. Um dos campos do formulário não é devidamente bem preenchido e por isso não é validado (ex: nº de identificação fiscal não tem 9 dígitos). 
+        1. O sistema mostra uma mensagem a avisar que houve um erro no preenchimento do formulário, discriminando-o.
+        2.i. O gerente confirma a mensagem, voltando ao ponto 2 de modo a emendar o campo e prossegue para os passos seguintes.
+        2.ii. O gerente cancela a criação de um novo empregado, voltando ao menu principal.
+
+    5a. O sistema verifica que o empregado já existe na lista de empregados.
+        1. O sistema mostra uma mensagem a informar que o empregado já estava registado na empresa e cancela a operação.
+        2.i. O gerente confirma a mensagem, voltando ao ponto 2 de modo a emendar o campo e prossegue para os passos seguintes.
+        2.ii. O gerente cancela a criação de um novo empregado, voltando ao menu principal.
+
+    5b. O sistema verifica que um dos campos únicos do formulário (ex: número de identificação fiscal) já existe associado a um empregado registado no sistema.
+        1. O sistema mostra uma mensagem a avisar que houve um erro no preenchimento do formulário, discriminando-o.
+        2.i. O gerente confirma a mensagem, voltando ao ponto 2 de modo a emendar o campo e prossegue para os passos seguintes.
+        2.ii. O gerente cancela a criação de um novo empregado, voltando ao menu principal.
+
 ## Diagramas de Sequência
 
 Ator Primário:
