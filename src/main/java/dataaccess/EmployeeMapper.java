@@ -192,18 +192,23 @@ public class EmployeeMapper {
                     rs.getInt("store"),
                     rs.getInt("section")
                     );
-            sale = new Sale(rs.getInt("id"), rs.getDate("date"));
 
+            /*
+             * TODO: adicionar empregado a loja
+             */
+
+            /*
             List<SaleProduct> saleProducts = SaleProductMapper.getSaleProducts(rs.getInt("id"));
             for(SaleProduct sp : saleProducts)
                 sale.addProductToSale(sp.getProduct(), sp.getQty());
 
             if (rs.getString("status").equals(Sale.CLOSED))
                 sale.close();
+                */
 
         } catch (SQLException e) {
-            throw new RecordNotFoundException ("Sale does not exist	", e);
+            throw new RecordNotFoundException ("Employee does not exist	", e);
         }
-        return sale;
+        return employee;
     }
 }
