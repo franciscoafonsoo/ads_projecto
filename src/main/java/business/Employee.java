@@ -100,4 +100,19 @@ public class Employee {
     public void setSection(int section) {
         this.section = section;
     }
+
+    @Override
+    public String toString() {
+        return "Employee @ " +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", pwd='" + pwd + '\'' +
+                ", tlm=" + tlm +
+                ", date=" + date +
+                ", salary=" + salary +
+                ", vat=" + vat +
+                ", store=" + store +
+                ", section=" + section +
+                '}';
+    }
 }

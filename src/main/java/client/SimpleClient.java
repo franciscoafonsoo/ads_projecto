@@ -3,6 +3,7 @@ package client;
 import java.sql.SQLException;
 import java.util.List;
 
+import use_cases.HandleInsertEmployee;
 import use_cases.HandlerFilterSales;
 import use_cases.HandlerProcessSale;
 
@@ -40,6 +41,10 @@ public class SimpleClient {
 		
 		// create catalog(s)
 		CatalogSale saleCatalog = new CatalogSale();
+		CatalogEmployee employeeCatalog = new CatalogEmployee();
+
+		// this client deals with the Insert Employee use case
+		HandleInsertEmployee hie = new HandleInsertEmployee(employeeCatalog);
 		
 		// this client deals with the Process Sale use case
 		HandlerProcessSale hps = new HandlerProcessSale(saleCatalog); 
@@ -48,8 +53,12 @@ public class SimpleClient {
 		HandlerFilterSales hfs = new HandlerFilterSales(saleCatalog);
 			
 		try { // sample interaction		
-			
-					
+
+			System.out.println("\n-- Add employee and print it ----------------------------");
+
+			Employee employee = hie.newEmployee("emp1", "password", "01/01/2009", 919122432, 545321456);
+
+			System.out.println(employee);
 			
 			System.out.println("\n-- Add sale and print it ----------------------------");
 			

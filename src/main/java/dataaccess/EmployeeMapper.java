@@ -41,7 +41,7 @@ public class EmployeeMapper {
      *
      */
 
-    public static int insert(String name, String pwd, int tlm, java.util.Date birth, float salary
+    public static int insert(String name, String pwd, int tlm, java.util.Date birth, double salary
     , int vat, int store, int section) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepareGetGenKey(INSERT_EMPLOYEE_SQL)) {
 
@@ -54,7 +54,7 @@ public class EmployeeMapper {
             statement.setDate(3, bir);
             statement.setInt(4, tlm);
             statement.setDate(5, entry);
-            statement.setFloat(6, salary);
+            statement.setDouble(6, salary);
             statement.setInt(7, vat);
             statement.setBoolean(8, false);
             statement.setInt(9, store);
@@ -134,6 +134,29 @@ public class EmployeeMapper {
         }
     }
 
+    private static final String GET_EMPLOYEE_BY_VAT_SQL =
+
+            "SELECT id, name, password, birth, tlm, entry_date, salary, " +
+                    "vat, score_one, score_two, score_three, filed, store_id, " +
+                    "section_id FROM employee WHERE vat = ?";
+
+    public static boolean getEmployeeByVAT(int vat) throws PersistenceException {
+
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_EMPLOYEE_BY_VAT_SQL)) {
+            statement.setInt(1, vat);
+            try (ResultSet rs = statement.executeQuery()) {
+                if(!rs.next())
+                    return false;
+                else {
+                    Employee employee = loadEmployee(rs);
+                    cachedEmployee.put(employee.getId(), employee);
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Internal error getting employee " + vat, e);
+        }
+    }
     /////////////////////////////////////////////////////////////////////////
     // SQL statement: get all sales
     private static final String GET_ALL_EMPLOYEES_SQL = "SELECT * FROM employee";
@@ -152,7 +175,7 @@ public class EmployeeMapper {
 
                 List<Employee> employees = new LinkedList<Employee>();
                 while(rs.next()) { // for each sale
-                    int employee_id = rs.getInt("id"),
+                    int employee_id = rs.getInt("id");
                     if (cachedEmployee.containsKey(employee_id))   // check if it is cached
                         employees.add(cachedEmployee.get(employee_id));
                     else {
@@ -176,7 +199,7 @@ public class EmployeeMapper {
      * @return A new sale loaded from the database.
      * @throws PersistenceException
      */
-    private static Employee loadEmployee(ResultSet rs) throws PersistenceException {
+     private static Employee loadEmployee(ResultSet rs) throws PersistenceException {
         Sale sale;
         Employee employee;
         try {
@@ -184,13 +207,13 @@ public class EmployeeMapper {
             employee = new Employee(
                     rs.getInt("id"),
                     rs.getString("name"),
-                    rs.getString("pwd"),
+                    rs.getString("password"),
                     rs.getInt("tlm"),
-                    rs.getDate("date"),
+                    rs.getDate("entry_date"),
                     rs.getFloat("salary"),
                     rs.getInt("vat"),
-                    rs.getInt("store"),
-                    rs.getInt("section")
+                    rs.getInt("store_id"),
+                    rs.getInt("section_id")
                     );
 
             /*
