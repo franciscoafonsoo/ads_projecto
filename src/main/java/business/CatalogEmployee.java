@@ -19,7 +19,6 @@ public class CatalogEmployee {
             double salary = 900.25;
 
             if(!EmployeeMapper.getEmployeeByVAT(vat)) {
-                // como fazer loja e seccao ?
                 int employee_id = EmployeeMapper.insert(name, password, tlm, b, salary, vat, 1, 1);
                 return EmployeeMapper.getEmployeeById(employee_id);
             }
