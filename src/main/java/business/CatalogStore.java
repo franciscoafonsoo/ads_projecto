@@ -13,6 +13,10 @@ public class CatalogStore {
 
             Store store = StoreMapper.getStoreById(storeId);
 
+            store.addEmployeeToStore(e);
+
+            // StoreEmployeeMapper.insert(store.getId(), e.getId(), sectionId);
+
             System.out.println(store);
 
         } catch (PersistenceException e1) {

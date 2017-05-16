@@ -1,6 +1,9 @@
 package business;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Store {
 
 
@@ -10,6 +13,7 @@ public class Store {
     private int tlm;
     private int fax;
     private String email;
+    private List<Employee> employeeList;
 
     public Store(int id, String address, String district, int tlm, int fax, String email) {
         this.id = id;
@@ -18,6 +22,7 @@ public class Store {
         this.tlm = tlm;
         this.fax = fax;
         this.email = email;
+        this.employeeList = new ArrayList<>();
     }
 
     public int getId() {
@@ -68,6 +73,14 @@ public class Store {
         this.email = email;
     }
 
+    public void addEmployeeToStore(Employee e) {
+        this.employeeList.add(e);
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
     @Override
     public String toString() {
         return "Store @ " +
@@ -76,6 +89,7 @@ public class Store {
                 ", district='" + district + '\'' +
                 ", tlm=" + tlm +
                 ", fax=" + fax +
-                ", email='" + email + '\'';
+                ", email='" + email + '\'' +
+                ", employeeList=" + employeeList;
     }
 }
