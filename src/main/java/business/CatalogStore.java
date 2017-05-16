@@ -1,9 +1,25 @@
 package business;
 
-/**
- * Created by sherby on 15/05/2017.
- */
+
+import dataaccess.PersistenceException;
+import dataaccess.ProductMapper;
+import dataaccess.SaleProductMapper;
+import dataaccess.StoreMapper;
+
 public class CatalogStore {
-    public void addEmployeeToStore(Employee e) {
+    public void addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
+        try {
+            // basicamente tenho que encontrar uma loja por id
+            // adicionar o empregado la
+            // e actualizar no empregado a sua loja e id
+
+            Store store = StoreMapper.getStoreById(storeId);
+
+        } catch (PersistenceException e1) {
+            throw new ApplicationException("Unable to get Store", e1);
+        }
+
+
     }
+
 }

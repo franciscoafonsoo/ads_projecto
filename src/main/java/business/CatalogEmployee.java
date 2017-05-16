@@ -19,7 +19,7 @@ public class CatalogEmployee {
             double salary = 900.25;
 
             if(!EmployeeMapper.getEmployeeByVAT(vat)) {
-                int employee_id = EmployeeMapper.insert(name, password, tlm, b, salary, vat, 1, 1);
+                int employee_id = EmployeeMapper.insert(name, password, tlm, b, salary, vat);
                 return EmployeeMapper.getEmployeeById(employee_id);
             }
             else

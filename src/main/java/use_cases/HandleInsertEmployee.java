@@ -24,7 +24,7 @@ public class HandleInsertEmployee {
         return employeeCatalog.newEmployee(name, password, birth, tlm, vat);
     }
 
-    public void addEmployeeToStore(Employee e) throws ApplicationException {
-        storeCatalog.addEmployeeToStore(e);
+    public void addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
+        storeCatalog.addEmployeeToStore(e, storeId, sectionId);
     }
 }

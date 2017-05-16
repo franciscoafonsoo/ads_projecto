@@ -25,8 +25,8 @@ public class EmployeeMapper {
     // SQL statement: inserts a new employee
     private static final String INSERT_EMPLOYEE_SQL =
             "INSERT INTO employee (id, name, password, birth, tlm, entry_date, salary, vat, " +
-                    "score_one, score_two, score_three, filed, store_id, section_id)" +
-                    " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, ?, ?, ?)";
+                    "score_one, score_two, score_three, filed)" +
+                    " VALUES (DEFAULT, ?, ?, ?, ?, ?, ?, ?, 0, 0, 0, ?)";
 
     /**
      * Inserts a new employee into the database
@@ -42,7 +42,7 @@ public class EmployeeMapper {
      */
 
     public static int insert(String name, String pwd, int tlm, java.util.Date birth, double salary
-    , int vat, int store, int section) throws PersistenceException {
+    , int vat) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepareGetGenKey(INSERT_EMPLOYEE_SQL)) {
 
             java.sql.Date bir = new java.sql.Date(birth.getTime());
@@ -57,8 +57,6 @@ public class EmployeeMapper {
             statement.setDouble(6, salary);
             statement.setInt(7, vat);
             statement.setBoolean(8, false);
-            statement.setInt(9, store);
-            statement.setInt(10, section);
             // execute SQL
             statement.executeUpdate();
             // get sale Id generated automatically by the database engine
