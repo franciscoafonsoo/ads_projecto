@@ -2,8 +2,6 @@ package business;
 
 
 import dataaccess.PersistenceException;
-import dataaccess.ProductMapper;
-import dataaccess.SaleProductMapper;
 import dataaccess.StoreMapper;
 
 public class CatalogStore {
@@ -14,6 +12,8 @@ public class CatalogStore {
             // e actualizar no empregado a sua loja e id
 
             Store store = StoreMapper.getStoreById(storeId);
+
+            System.out.println(store);
 
         } catch (PersistenceException e1) {
             throw new ApplicationException("Unable to get Store", e1);

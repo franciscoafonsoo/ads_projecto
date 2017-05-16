@@ -42,9 +42,10 @@ public class SimpleClient {
 		// create catalog(s)
 		CatalogSale saleCatalog = new CatalogSale();
 		CatalogEmployee employeeCatalog = new CatalogEmployee();
+		CatalogStore storeCatalog = new CatalogStore();
 
 		// this client deals with the Insert Employee use case
-		HandleInsertEmployee hie = new HandleInsertEmployee(employeeCatalog);
+		HandleInsertEmployee hie = new HandleInsertEmployee(employeeCatalog, storeCatalog);
 		
 		// this client deals with the Process Sale use case
 		HandlerProcessSale hps = new HandlerProcessSale(saleCatalog); 
@@ -56,7 +57,8 @@ public class SimpleClient {
 
 			System.out.println("\n-- Add employee and print it ----------------------------");
 
-			Employee employee = hie.newEmployee("emp1", "password", "01/01/2009", 919122432, 545321456);
+			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
+			// Employee employee = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
 			hie.addEmployeeToStore(employee, 1, 1);
 

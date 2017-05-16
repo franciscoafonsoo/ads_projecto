@@ -15,7 +15,7 @@ public class HandleInsertEmployee {
     private CatalogEmployee employeeCatalog;
     private CatalogStore storeCatalog;
 
-    public HandleInsertEmployee(CatalogEmployee employeeCatalog) {
+    public HandleInsertEmployee(CatalogEmployee employeeCatalog, CatalogStore storeCatalog) {
         this.employeeCatalog = employeeCatalog;
         this.storeCatalog = storeCatalog;
     }

@@ -191,6 +191,7 @@ public class EmployeeMapper {
 
     /**
      * Creates a sale object from a result set retrieved from the database.
+     * TODO: javadoc
      *
      * @requires rs.next() was already executed
      * @param rs The result set with the information to create the sale.
@@ -198,10 +199,8 @@ public class EmployeeMapper {
      * @throws PersistenceException
      */
      private static Employee loadEmployee(ResultSet rs) throws PersistenceException {
-        Sale sale;
         Employee employee;
         try {
-            // String name, String pwd, float tlm, java.util.Date birth, float salary, int vat, int store, int section
             employee = new Employee(
                     rs.getInt("id"),
                     rs.getString("name"),
@@ -213,20 +212,6 @@ public class EmployeeMapper {
                     rs.getInt("store_id"),
                     rs.getInt("section_id")
                     );
-
-            /*
-             * TODO: adicionar empregado a loja
-             */
-
-            /*
-            List<SaleProduct> saleProducts = SaleProductMapper.getSaleProducts(rs.getInt("id"));
-            for(SaleProduct sp : saleProducts)
-                sale.addProductToSale(sp.getProduct(), sp.getQty());
-
-            if (rs.getString("status").equals(Sale.CLOSED))
-                sale.close();
-                */
-
         } catch (SQLException e) {
             throw new RecordNotFoundException ("Employee does not exist	", e);
         }

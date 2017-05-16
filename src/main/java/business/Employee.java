@@ -112,7 +112,6 @@ public class Employee {
                 ", salary=" + salary +
                 ", vat=" + vat +
                 ", store=" + store +
-                ", section=" + section +
-                '}';
+                ", section=" + section;
     }
 }

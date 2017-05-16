@@ -17,13 +17,10 @@ public class StoreMapper {
     }
 
     /////////////////////////////////////////////////////////////////////////
-    // (id, name, password, birth, tlm, entry_date, salary, vat, "score_one, score_two, score_three, filed, store_id, section_id)
-    // SQL statement: selects a sale by its id
+    // TODO: add manager later
+    // SQL statement: selects a store by its id
     private static final String GET_STORE_SQL =
-
-            "SELECT id, name, password, birth, tlm, entry_date, salary, " +
-                    "vat, score_one, score_two, score_three, filed, store_id, " +
-                    "section_id FROM employee WHERE id = ?";
+            "SELECT id, address, district, tlm, fax, email FROM store WHERE id = ?";
 
     /**
      * TODO: javadoc
@@ -55,6 +52,19 @@ public class StoreMapper {
     }
 
     private static Store loadStore(ResultSet rs) throws PersistenceException {
-        return null;
+        Store store;
+        try {
+            store = new Store(
+                    rs.getInt("id"),
+                    rs.getString("address"),
+                    rs.getString("district"),
+                    rs.getInt("tlm"),
+                    rs.getInt("fax"),
+                    rs.getString("email")
+            );
+        } catch (SQLException e) {
+            throw new RecordNotFoundException ("Employee does not exist	", e);
+        }
+        return store;
     }
 }
