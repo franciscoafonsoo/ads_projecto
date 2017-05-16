@@ -24,33 +24,52 @@ public class Sale {
 		this.status       = OPEN;
 		this.saleProducts = new LinkedList<SaleProduct>();
 	}
-	
+
+	/**
+	 * @return the date when the sale was created
+	 */
 	public Date getDate() {
 		return date;
 	}
-	
+
+	/**
+	 * @return the sale's id
+	 */
 	public int getId() {
 		return id;
 	}
 
+	/**
+	 * @return the sale's product list
+	 */
 	public List<SaleProduct> getSaleProducts() {
 		return saleProducts;
 	}
+
 	/**
 	 * @return Whether the sale is open
 	 */
 	public boolean isOpen() {
 		return status.equals(OPEN);
 	}
-	
+
+	/**
+	 * Closes the sale
+	 */
 	public void close() {
 		 status = CLOSED;
 	}
-	
+
+	/**
+	 * Opens the sale
+	 */
 	public void open() {
 		 status = OPEN;
 	}
-	
+
+	/**
+	 * @return the sale's status, open or closed
+	 */
 	public String getStatus() {
 		return status;
 	}
@@ -76,11 +95,14 @@ public class Sale {
 	public void addProductToSale(ProductSpec product, double qty) {
 		saleProducts.add(new SaleProduct(product, qty));
 	}
-	
+
+	/**
+	 * @return a String that represents a sale and the products
+	 */
 	@Override
 	public String toString() {
 		StringBuilder sb = new StringBuilder();
-		sb.append("Sale @ " + date.toString() + "; " + (isOpen()?"open":"closed") + "; total of €" + total() + " with products:");
+		sb.append("Sale @ " + date.toString() + "; " + (isOpen()?"open":"closed") + "; total of ï¿½" + total() + " with products:");
 		for (SaleProduct sp : saleProducts)
 			sb.append(" [code " + sp.getProduct().getProductCode() + ", " + sp.getQty() + " units]");
 		return sb.toString();

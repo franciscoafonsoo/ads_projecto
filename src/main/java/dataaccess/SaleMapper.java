@@ -13,8 +13,8 @@ import business.Sale;
 import business.SaleProduct;
 
 /**
- * Este e' um exemplo do padrão Mapper (Fowler cap.18) que estabelece
- * a comunicação entre dois sistemas: a camada de negócio e a base de dados
+ * Este e' um exemplo do padrï¿½o Mapper (Fowler cap.18) que estabelece
+ * a comunicaï¿½ï¿½o entre dois sistemas: a camada de negï¿½cio e a base de dados
  * disponibilizada via DataSource.
  * 
  * Este e' um padrao adequado para lidar com o domain model, dado que cada
@@ -23,7 +23,7 @@ import business.SaleProduct;
  * 
  * Tem a desvantagem de precisar do acesso das classes da camada de negocio
  * 
- * A classe tem as operações CRUD (create, read, update, delete) em relacao
+ * A classe tem as operaï¿½ï¿½es CRUD (create, read, update, delete) em relacao
  * 'as vendas
  * 
  * Nesta classe foi incluido tambem uma cache, que permite reduzir o acesso

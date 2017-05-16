@@ -17,7 +17,8 @@ import dataaccess.SaleProductMapper;
 public class CatalogSale {
 	
 	/**
-	 * Creates a new sale, initially it open, and has a total of zero 
+	 * Creates a new sale, initially it open, and has a total of zero
+	 *
 	 * @return
 	 * @throws ApplicationException
 	 */
