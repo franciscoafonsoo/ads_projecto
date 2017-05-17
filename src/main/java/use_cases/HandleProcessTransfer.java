@@ -1,9 +1,6 @@
 package use_cases;
 
-import business.CatalogEmployee;
-import business.CatalogStore;
-import business.CatalogTransfers;
-import business.Transfer;
+import business.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,13 +18,16 @@ public class HandleProcessTransfer {
     }
 
 
-    public List<Transfer> confirmTransfers() {
-        CatalogTransfers.confirmTransfers();
-        return new ArrayList<Transfer>();
+    public List<Transfer> confirmTransfers() throws ApplicationException {
+        return CatalogTransfers.confirmTransfers();
     }
 
-    public boolean checkForConflits(List<Transfer> t) {
-        return false;
+    public boolean checkForConflits(List<Transfer> transfers) {
+        return CatalogTransfers.checkForConflits(transfers);
+    }
+
+    public void processTransfers() {
+        CatalogTransfers.processTransfers();
     }
 
     public void processTransfers(List<Transfer> transfers) {

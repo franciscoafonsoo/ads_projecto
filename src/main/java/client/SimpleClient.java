@@ -70,7 +70,7 @@ public class SimpleClient {
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
 
 			// a second employee for testing purpose
-			// Employee employee = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
+			// Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
 			Store store = hie.addEmployeeToStore(employee, 1, 2);
 
@@ -101,18 +101,18 @@ public class SimpleClient {
 				if (vac == 2) {
 					vacancies = hrf.consultAllVacancies();
 
-					for (Vacancy v : vacancies) {
+					for (Vacancy v : vacancies)
 						System.out.println(v);
-					}
+
 					check = false;
 				} else if (vac == 1) {
 					System.out.println("Indique o id da loja (ex: 1): ");
 					int storeId = s.nextInt();
 					vacancies = hrf.consultVacanciesByStoreId(storeId);
 
-					for (Vacancy v : vacancies) {
+					for (Vacancy v : vacancies)
 						System.out.println(v);
-					}
+
 					check = false;
 				}
 				else {
@@ -131,17 +131,25 @@ public class SimpleClient {
 			// Terceiro caso de Uso /
 			/////////////////////////
 
-			System.out.println("\n-- Process transfers --------------------------------");
+			System.out.println("\n-- Process transfers --------------------------------" + '\n');
 
-			List<Transfer> t = hpt.confirmTransfers();
-			boolean conflits = hpt.checkForConflits(t);
+			List<Transfer> transfers = hpt.confirmTransfers();
+			boolean conflits = hpt.checkForConflits(transfers);
 
-			if(conflits)
-				hpt.processTransfers(t);
-			else
-				hpt.processTransfers(t);
+			if(conflits) {
+				hpt.processTransfers(transfers);
+			}
+			else {
+				System.out.println("-- Transferencias não contêm conflitos --------------");
+				for(Transfer t: transfers)
+					System.out.println(t);
 
-			System.out.println("\n-- FIM DOS CASOS DE USO PEDIDOS ---------------------");
+				System.out.println("Confirmar as transferencias (1)?");
+				int confirm = s.nextInt();
+				if(confirm == 1)
+					hpt.processTransfers();
+			}
+			System.out.println("\n-- FIM DOS CASOS DE USO ----------------------------" + '\n');
 
 			// creates a new sale (returns it)
 			Sale sale = hps.newSale();

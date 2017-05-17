@@ -54,7 +54,6 @@ public class Transfer {
                 ", vacancy_id=" + vacancy_id +
                 ", employee_id=" + employee_id +
                 ", score=" + score +
-                ", entry_date=" + entry_date +
-                ", is_processed=" + is_processed;
+                ", request date=" + entry_date;
     }
 }
