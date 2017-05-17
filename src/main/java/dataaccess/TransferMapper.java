@@ -21,34 +21,17 @@ public class TransferMapper {
             "INSERT INTO transfer (id, vacancy_id, employee_id, score)" +
                     " VALUES (DEFAULT, ?, ?, ?)";
 
-    public static int insert(String name, String pwd, int tlm, java.util.Date birth, double salary
-            , int vat) throws PersistenceException {
+
+    public static void insert(int vacancy_id, int employee_id, double score) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepareGetGenKey(INSERT_TRANSFER_SQL)) {
-
-            java.sql.Date bir = new java.sql.Date(birth.getTime());
-            java.sql.Date entry = new java.sql.Date(new java.util.Date().getTime());
-
-            // set statement arguments
-            statement.setString(1, name);
-            statement.setString(2, pwd);
-            statement.setDate(3, bir);
-            statement.setInt(4, tlm);
-            statement.setDate(5, entry);
-            statement.setDouble(6, salary);
-            statement.setInt(7, vat);
-            statement.setBoolean(8, false);
-            // execute SQL
+            // set statements
+            statement.setInt(1, vacancy_id);
+            statement.setInt(2, employee_id);
+            statement.setDouble(3, score);
+            // execute
             statement.executeUpdate();
-            // get sale Id generated automatically by the database engine
-            try (ResultSet rs = statement.getGeneratedKeys()) {
-                rs.next();
-                return rs.getInt(1);
-            }
         } catch (SQLException e) {
-            throw new PersistenceException ("Error inserting a new employee!", e);
+            throw new PersistenceException ("Error inserting a new transfer request!", e);
         }
-    }
-
-    public static void insert(int vacancy_id, int employee_id, int score) throws PersistenceException {
     }
 }
