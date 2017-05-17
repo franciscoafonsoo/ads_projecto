@@ -28,7 +28,7 @@ public class HandleRequestTransfer {
     }
 
 
-    public void requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException {
-        CatalogTransfers.requestTransfer(vacancy, employee);
+    public int requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException {
+        return CatalogTransfers.requestTransfer(vacancy, employee);
     }
 }

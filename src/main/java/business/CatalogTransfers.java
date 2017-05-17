@@ -29,11 +29,11 @@ public class CatalogTransfers {
         }
     }
 
-    public static void requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException{
+    public static int requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException{
         try {
             if (vacancy != null) {
 
-                TransferMapper.insert(vacancy.getId(), employee.getId(), vacancy.getSection_id());
+                return TransferMapper.insert(vacancy.getId(), employee.getId(), vacancy.getSection_id());
             }
             else
                 throw new ApplicationException("Choose a valid vacancy");

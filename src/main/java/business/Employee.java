@@ -61,10 +61,6 @@ public class Employee {
         this.name = name;
     }
 
-    public String getPwd() {
-        return pwd;
-    }
-
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }

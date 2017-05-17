@@ -81,14 +81,14 @@ public class SimpleClient {
 
 			while(check) {
 				int vac = s.nextInt();
-				if (vac == 1) {
+				if (vac == 2) {
 					vacancies = hrf.consultAllVacancies();
 
 					for (Vacancy v : vacancies) {
 						System.out.println(v);
 					}
 					check = false;
-				} else if (vac == 2) {
+				} else if (vac == 1) {
 					System.out.println("Indique o id da loja (ex: 1): ");
 					int storeId = s.nextInt();
 					vacancies = hrf.consultVacanciesByStoreId(storeId);
@@ -106,7 +106,9 @@ public class SimpleClient {
 			System.out.println("Escolha o id da vaga: ");
 			int vacancyId = s.nextInt();
 
-			hrf.requestTransfer(Vacancy.containsId(vacancies, vacancyId), employee);
+			int transfer_id = hrf.requestTransfer(Vacancy.containsId(vacancies, vacancyId), employee);
+
+			System.out.println("Transferencia pedida. Id: " + transfer_id);
 
 			System.out.println("\n-- Add sale and print it ----------------------------");
 			

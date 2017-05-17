@@ -18,7 +18,7 @@ public class Store {
     /**
      * Creates a new Store with the information needed
      *
-     * @param id
+     * @param id store if
      * @param address
      * @param district
      * @param tlm

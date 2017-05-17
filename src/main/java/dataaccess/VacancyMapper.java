@@ -72,7 +72,7 @@ public class VacancyMapper {
                     rs.getInt("id"),
                     rs.getInt("store_id"),
                     rs.getInt("section_id"),
-                    rs.getInt("number"),
+                    rs.getInt("numbers"),
                     rs.getDate("entry_date")
             );
         } catch (SQLException e) {

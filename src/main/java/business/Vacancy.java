@@ -21,6 +21,8 @@ public class Vacancy {
         this.entry_date = entry_date;
     }
 
+    // getters and setters
+
     public int getId() {
         return id;
     }
