@@ -16,6 +16,19 @@ public class Employee {
     private int     store;
     private int     section;
 
+    /**
+     * Creates a new Employee with the information needed
+     *
+     * @param id
+     * @param name Name of Employee
+     * @param pwd
+     * @param tlm
+     * @param date
+     * @param salary
+     * @param vat
+     * @param store
+     * @param section
+     */
     public Employee(int id, String name, String pwd, int tlm, Date date, float salary, int vat, int store, int section) {
 
         this.id = id;

@@ -68,6 +68,6 @@ public class ProductSpec {
 	}
 	
 	public String toString() {
-		return description + " [code " + itemID + " with unit price €" + price + " and stock " + qty + "]"; 
+		return description + " [code " + itemID + " with unit price ï¿½" + price + " and stock " + qty + "]"; 
 	}
 }

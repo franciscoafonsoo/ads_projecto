@@ -6,6 +6,15 @@ import dataaccess.PersistenceException;
 import dataaccess.StoreMapper;
 
 public class CatalogStore {
+
+    /***
+     * Adds an Employee to a section in a store
+     *
+     * @param e The employee
+     * @param storeId Id of store
+     * @param sectionId Id of section
+     * @throws ApplicationException if the store, or the section doesn't exist
+     */
     public String addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
         try {
             // basicamente tenho que encontrar uma loja por id
