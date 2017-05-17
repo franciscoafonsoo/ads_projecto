@@ -1,11 +1,12 @@
 package business;
 
 
+import dataaccess.EmployeeMapper;
 import dataaccess.PersistenceException;
 import dataaccess.StoreMapper;
 
 public class CatalogStore {
-    public void addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
+    public String addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
         try {
             // basicamente tenho que encontrar uma loja por id
             // adicionar o empregado la
@@ -13,9 +14,13 @@ public class CatalogStore {
 
             Store store = StoreMapper.getStoreById(storeId);
 
-            store.addEmployeeToStore(e);
-
-            // StoreEmployeeMapper.insert(store.getId(), e.getId(), sectionId);
+            if(store.getEmployeeList().contains(e)) {
+                return "employee already in this store";
+            }
+            else {
+                store.addEmployeeToStore(e);
+                EmployeeMapper.update(e.getId(), storeId, sectionId);
+            }
 
             System.out.println(store);
 
@@ -24,6 +29,7 @@ public class CatalogStore {
         }
 
 
+        return null;
     }
 
 }

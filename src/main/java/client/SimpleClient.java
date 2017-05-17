@@ -2,10 +2,9 @@ package client;
 
 import java.sql.SQLException;
 import java.util.List;
+import java.util.Scanner;
 
-import use_cases.HandleInsertEmployee;
-import use_cases.HandlerFilterSales;
-import use_cases.HandlerProcessSale;
+import use_cases.*;
 
 import business.*;
 
@@ -43,9 +42,16 @@ public class SimpleClient {
 		CatalogSale saleCatalog = new CatalogSale();
 		CatalogEmployee employeeCatalog = new CatalogEmployee();
 		CatalogStore storeCatalog = new CatalogStore();
+		CatalogTransfers transfersCatalog = new CatalogTransfers();
 
 		// this client deals with the Insert Employee use case
 		HandleInsertEmployee hie = new HandleInsertEmployee(employeeCatalog, storeCatalog);
+
+		// this client deals with the Request Transfer
+		HandleRequestTransfer hrf = new HandleRequestTransfer(employeeCatalog, transfersCatalog);
+
+		// this client deals with the Process Transfer
+		HandleProcessTransfer hpt = new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
 		
 		// this client deals with the Process Sale use case
 		HandlerProcessSale hps = new HandlerProcessSale(saleCatalog); 
@@ -55,7 +61,7 @@ public class SimpleClient {
 			
 		try { // sample interaction		
 
-			System.out.println("\n-- Add employee and print it ----------------------------");
+			System.out.println("\n-- Add employee and print it ------------------------");
 
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
 			// Employee employee = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
@@ -63,7 +69,23 @@ public class SimpleClient {
 			hie.addEmployeeToStore(employee, 1, 1);
 
 			System.out.println(employee);
-			
+
+			System.out.println("\n-- Consult vacancy ----------------------------------");
+
+			System.out.println("Deseja consultar vagas por loja(1) ou todas(2)?");
+
+			Scanner s = new Scanner(System.in);
+			int check = s.nextInt();
+
+			if(check == 1) {
+				hrf.consultAllVacancies();
+			}
+			else if(check == 2) {
+				System.out.println("Indique o id da loja (ex: 1): ");
+				int storeId = s.nextInt();
+				hrf.consultVacanciesByStoreId(storeId);
+			}
+
 			System.out.println("\n-- Add sale and print it ----------------------------");
 			
 			// creates a new sale (returns it)

@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import business.Employee;
-import business.Sale;
-import business.SaleProduct;
 
 
 public class EmployeeMapper {
@@ -170,19 +168,7 @@ public class EmployeeMapper {
 
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_ALL_EMPLOYEES_SQL)) {
             try (ResultSet rs = statement.executeQuery()) {
-
-                List<Employee> employees = new LinkedList<Employee>();
-                while(rs.next()) { // for each sale
-                    int employee_id = rs.getInt("id");
-                    if (cachedEmployee.containsKey(employee_id))   // check if it is cached
-                        employees.add(cachedEmployee.get(employee_id));
-                    else {
-                        Employee employee = loadEmployee(rs);           // if not, create a new sale object
-                        employees.add(employee);                    //  insert it to result list,
-                        cachedEmployee.put(employee_id, employee);     //  and cache it
-                    }
-                }
-                return employees;
+                return loadSeveralEmployees(rs);
             }
         } catch (SQLException e) {
             throw new PersistenceException("Unable to fetch all employee", e);
@@ -216,5 +202,42 @@ public class EmployeeMapper {
             throw new RecordNotFoundException ("Employee does not exist	", e);
         }
         return employee;
+    }
+
+
+    private static final String GET_ALL_STORE_EMPLOYEES_SQL =
+            "SELECT id, name, password, birth, tlm, entry_date, salary, " +
+            "vat, score_one, score_two, score_three, filed, store_id, " +
+            "section_id FROM employee WHERE store_id = ?";
+
+
+    public static List<Employee> getAllEmployeesByStoreId(int store_id) throws PersistenceException {
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_ALL_STORE_EMPLOYEES_SQL)) {
+
+            statement.setInt(1, store_id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                return loadSeveralEmployees(rs);
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Unable to fetch all employee", e);
+        }
+    }
+
+
+    private static List<Employee> loadSeveralEmployees(ResultSet rs) throws PersistenceException, SQLException {
+        List<Employee> employees = new LinkedList<Employee>();
+
+        while(rs.next()) {
+            int employee_id = rs.getInt("id");
+            if (cachedEmployee.containsKey(employee_id))   // check if it is cached
+                employees.add(cachedEmployee.get(employee_id));
+            else {
+                Employee employee = loadEmployee(rs);           // if not, create a new sale object
+                employees.add(employee);                    //  insert it to result list,
+                cachedEmployee.put(employee_id, employee);     //  and cache it
+            }
+        }
+        return employees;
     }
 }

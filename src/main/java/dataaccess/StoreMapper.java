@@ -1,11 +1,14 @@
 package dataaccess;
 
+import business.Employee;
 import business.Store;
 
+import javax.xml.crypto.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class StoreMapper {
@@ -35,6 +38,8 @@ public class StoreMapper {
         if (cachedStore.containsKey(store_id))
             return cachedStore.get(store_id);
 
+        List<Employee> employeeList = EmployeeMapper.getAllEmployeesByStoreId(store_id);
+
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_STORE_SQL)) {
             // set statement arguments
             statement.setInt(1, store_id);
@@ -42,8 +47,7 @@ public class StoreMapper {
             try (ResultSet rs = statement.executeQuery()) {
                 rs.next();
                 Store store = loadStore(rs);
-                // TODO: descomentar
-                // cachedStore.put(store.getId(), store);
+                cachedStore.put(store.getId(), store);
                 return store;
             }
         } catch (SQLException e) {
@@ -66,5 +70,9 @@ public class StoreMapper {
             throw new RecordNotFoundException ("Employee does not exist	", e);
         }
         return store;
+    }
+
+
+    public static void addEmployeeToStore(int id, int id1, int sectionId) {
     }
 }
