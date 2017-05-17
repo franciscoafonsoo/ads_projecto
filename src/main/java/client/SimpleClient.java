@@ -59,18 +59,35 @@ public class SimpleClient {
 		// this client deals with the Process Transfer
 		HandleProcessTransfer hpt 	= new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
 			
-		try { // sample interaction		
+		try {
 
 			System.out.println("\n-- Add employee and print it ------------------------");
 
+			/////////////////////////
+			// Primeiro caso de Uso /
+			/////////////////////////
+
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
-			// a second employee
+
+			// a second employee for testing purpose
 			// Employee employee = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
-			hie.addEmployeeToStore(employee, 1, 1);
+			Store store = hie.addEmployeeToStore(employee, 1, 2);
+
+			// visto que está a ser actualizado, é necessário obter o employee outra vez.
+			// e não vai precisar de query, visto que está em cache.
+
+			employee = hie.getEmployee(employee.getId());
 			System.out.println(employee);
 
+			// para ver a loja
+			// System.out.println(store);
+
 			System.out.println("\n-- Consult vacancy ----------------------------------");
+
+			/////////////////////////
+			// Segundo caso de Uso /
+			/////////////////////////
 
 			System.out.println("Deseja consultar vagas por loja(1) ou todas(2)?");
 			Scanner s = new Scanner(System.in);

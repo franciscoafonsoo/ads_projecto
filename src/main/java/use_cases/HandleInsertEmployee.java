@@ -1,9 +1,6 @@
 package use_cases;
 
-import business.ApplicationException;
-import business.CatalogEmployee;
-import business.CatalogStore;
-import business.Employee;
+import business.*;
 
 /**
  * Created by sherby on 15/05/2017.
@@ -24,7 +21,11 @@ public class HandleInsertEmployee {
         return employeeCatalog.newEmployee(name, password, birth, tlm, vat);
     }
 
-    public void addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
-        storeCatalog.addEmployeeToStore(e, storeId, sectionId);
+    public Store addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
+        return storeCatalog.addEmployeeToStore(e, storeId, sectionId);
+    }
+
+    public Employee getEmployee(int id) throws ApplicationException {
+        return employeeCatalog.getEmployee(id);
     }
 }

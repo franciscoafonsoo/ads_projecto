@@ -29,4 +29,12 @@ public class CatalogEmployee {
                 throw new ApplicationException("Unable to create new employee", e);
             }
     }
+
+    public Employee getEmployee(int id) throws ApplicationException {
+        try {
+            return EmployeeMapper.getEmployeeById(id);
+        } catch (PersistenceException e) {
+            throw new ApplicationException("Unable to fetch employee", e);
+        }
+    }
 }

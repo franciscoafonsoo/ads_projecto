@@ -113,6 +113,14 @@ public class Employee {
         this.section = section;
     }
 
+    public double getScore() {
+        return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
+    }
+
     @Override
     public String toString() {
         return "Employee @ " +
@@ -124,6 +132,7 @@ public class Employee {
                 ", salary=" + salary +
                 ", vat=" + vat +
                 ", store=" + store +
-                ", section=" + section;
+                ", section=" + section +
+                ", score=" + score;
     }
 }

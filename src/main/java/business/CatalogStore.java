@@ -15,7 +15,7 @@ public class CatalogStore {
      * @param sectionId Id of section
      * @throws ApplicationException if the store, or the section doesn't exist
      */
-    public String addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
+    public Store addEmployeeToStore(Employee e, int storeId, int sectionId) throws ApplicationException {
         try {
             // basicamente tenho que encontrar uma loja por id
             // adicionar o empregado la
@@ -24,21 +24,18 @@ public class CatalogStore {
             Store store = StoreMapper.getStoreById(storeId);
 
             if(store.getEmployeeList().contains(e)) {
-                return "employee already in this store";
+                throw new ApplicationException("Employee already in store");
             }
             else {
                 store.addEmployeeToStore(e);
                 EmployeeMapper.update(e.getId(), storeId, sectionId);
             }
 
-            System.out.println(store);
+            return store;
 
         } catch (PersistenceException e1) {
             throw new ApplicationException("Unable to get Store", e1);
         }
-
-
-        return null;
     }
 
 }

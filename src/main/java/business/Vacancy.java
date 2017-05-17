@@ -50,8 +50,7 @@ public class Vacancy {
                 ", store_id=" + store_id +
                 ", section_id=" + section_id +
                 ", number=" + number +
-                ", entry_date=" + entry_date +
-                '}';
+                ", entry_date=" + entry_date;
     }
 
     @Override
