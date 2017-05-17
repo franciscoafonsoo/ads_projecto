@@ -1,5 +1,7 @@
 package business;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.sql.Date;
 
 
@@ -42,7 +44,8 @@ public class Employee {
         this.vat = vat;
         this.store = store;
         this.section = section;
-        this.score = ((score_one * 0.3) + (score_two * 0.2) + (score_three * 0.1));
+        // round by: http://stackoverflow.com/a/2808648
+        this.score = round(((score_one * 0.3) + (score_two * 0.2) + (score_three * 0.1)), 3);
     }
 
     public int getId() {
@@ -119,6 +122,15 @@ public class Employee {
 
     public void setScore(double score) {
         this.score = score;
+    }
+
+    // round score to a places value
+    private static double round(double value, int places) {
+        if (places < 0) throw new IllegalArgumentException();
+
+        BigDecimal bd = new BigDecimal(value);
+        bd = bd.setScale(places, RoundingMode.HALF_UP);
+        return bd.doubleValue();
     }
 
     @Override
