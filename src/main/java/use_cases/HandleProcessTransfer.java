@@ -3,6 +3,10 @@ package use_cases;
 import business.CatalogEmployee;
 import business.CatalogStore;
 import business.CatalogTransfers;
+import business.Transfer;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class HandleProcessTransfer {
@@ -17,4 +21,16 @@ public class HandleProcessTransfer {
     }
 
 
+    public List<Transfer> confirmTransfers() {
+        CatalogTransfers.confirmTransfers();
+        return new ArrayList<Transfer>();
+    }
+
+    public boolean checkForConflits(List<Transfer> t) {
+        return false;
+    }
+
+    public void processTransfers(List<Transfer> transfers) {
+
+    }
 }

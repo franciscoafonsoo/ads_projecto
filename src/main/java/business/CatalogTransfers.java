@@ -39,4 +39,13 @@ public class CatalogTransfers {
             throw new ApplicationException("Unable to request Transfer", e1);
         }
     }
+
+    public static List<Transfer> confirmTransfers() throws ApplicationException {
+        try {
+            List<Transfer> t = TransferMapper.getAllTransfers();
+            return t;
+        } catch (PersistenceException e) {
+            throw new ApplicationException("Unable to process Transfers", e);
+        }
+    }
 }

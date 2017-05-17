@@ -86,7 +86,7 @@ public class SimpleClient {
 			System.out.println("\n-- Consult vacancy ----------------------------------");
 
 			/////////////////////////
-			// Segundo caso de Uso /
+			// Segundo caso de Uso  /
 			/////////////////////////
 
 			System.out.println("Deseja consultar vagas por loja(1) ou todas(2)?");
@@ -125,10 +125,24 @@ public class SimpleClient {
 
 			int transfer_id = hrf.requestTransfer(Vacancy.containsId(vacancies, vacancyId), employee);
 
-			System.out.println("Transferencia pedida. Id: " + transfer_id);
+			System.out.println("Transferencia pedida com o id: " + transfer_id);
 
-			System.out.println("\n-- Add sale and print it ----------------------------");
-			
+			/////////////////////////
+			// Terceiro caso de Uso /
+			/////////////////////////
+
+			System.out.println("\n-- Process transfers --------------------------------");
+
+			List<Transfer> t = hpt.confirmTransfers();
+			boolean conflits = hpt.checkForConflits(t);
+
+			if(conflits)
+				hpt.processTransfers(t);
+			else
+				hpt.processTransfers(t);
+
+			System.out.println("\n-- FIM DOS CASOS DE USO PEDIDOS ---------------------");
+
 			// creates a new sale (returns it)
 			Sale sale = hps.newSale();
 

@@ -2,11 +2,15 @@ package dataaccess;
 
 
 import business.Transfer;
+import com.sun.org.apache.regexp.internal.RE;
+import com.sun.xml.internal.ws.api.ha.StickyFeature;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 public class TransferMapper {
@@ -41,5 +45,46 @@ public class TransferMapper {
         } catch (SQLException e) {
             throw new PersistenceException ("Error inserting a new transfer request!", e);
         }
+    }
+
+    private static final String GET_ALL_TRANSFERS_SQL = "SELECT * FROM transfers";
+
+    public static List<Transfer> getAllTransfers() throws PersistenceException {
+
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_ALL_TRANSFERS_SQL)) {
+            try (ResultSet rs = statement.executeQuery()) {
+                List<Transfer> transfers = new LinkedList<Transfer>();
+
+                while(rs.next()) {
+                    int transfer_id = rs.getInt("id");
+                    if (cachedTransfer.containsKey(transfer_id))
+                        transfers.add(cachedTransfer.get(transfer_id));
+                    else {
+                        Transfer transfer = loadTransfer(rs);
+                        transfers.add(transfer);
+                        cachedTransfer.put(transfer_id, transfer);
+                    }
+                }
+                return transfers;
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Unable to fetch all Transfers", e);
+        }
+    }
+
+    private static Transfer loadTransfer(ResultSet rs) throws PersistenceException {
+        Transfer transfer;
+        try {
+            transfer = new Transfer(
+                    rs.getInt("id"),
+                    rs.getInt("vacancy_id"),
+                    rs.getInt("employee_id"),
+                    rs.getDouble("score"),
+                    rs.getDate("entry_date"),
+                    rs.getBoolean("is_processed"));
+        } catch (SQLException e) {
+            throw new RecordNotFoundException("Transfer does not exist", e);
+        }
+        return transfer;
     }
 }
