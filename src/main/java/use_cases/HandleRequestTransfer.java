@@ -26,4 +26,9 @@ public class HandleRequestTransfer {
     public List<Vacancy> consultVacanciesByStoreId(int store_id) throws ApplicationException {
         return CatalogTransfers.consultVacanciesByStore(store_id);
     }
+
+
+    public void requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException {
+        CatalogTransfers.requestTransfer(vacancy, employee);
+    }
 }

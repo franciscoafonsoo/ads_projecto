@@ -39,52 +39,74 @@ public class SimpleClient {
 		}
 		
 		// create catalog(s)
-		CatalogSale saleCatalog = new CatalogSale();
+		CatalogSale saleCatalog 		= new CatalogSale();
 		CatalogEmployee employeeCatalog = new CatalogEmployee();
-		CatalogStore storeCatalog = new CatalogStore();
+		CatalogStore storeCatalog 		= new CatalogStore();
 		CatalogTransfers transfersCatalog = new CatalogTransfers();
 
-		// this client deals with the Insert Employee use case
-		HandleInsertEmployee hie = new HandleInsertEmployee(employeeCatalog, storeCatalog);
-
-		// this client deals with the Request Transfer
-		HandleRequestTransfer hrf = new HandleRequestTransfer(employeeCatalog, transfersCatalog);
-
-		// this client deals with the Process Transfer
-		HandleProcessTransfer hpt = new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
-		
 		// this client deals with the Process Sale use case
-		HandlerProcessSale hps = new HandlerProcessSale(saleCatalog); 
+		HandlerProcessSale hps	= new HandlerProcessSale(saleCatalog);
 		
 		// and with the filter sales use case
-		HandlerFilterSales hfs = new HandlerFilterSales(saleCatalog);
+		HandlerFilterSales hfs 	= new HandlerFilterSales(saleCatalog);
+
+		// this client deals with the Insert Employee use case
+		HandleInsertEmployee hie 	= new HandleInsertEmployee(employeeCatalog, storeCatalog);
+
+		// this client deals with the Request Transfer
+		HandleRequestTransfer hrf 	= new HandleRequestTransfer(employeeCatalog, transfersCatalog);
+
+		// this client deals with the Process Transfer
+		HandleProcessTransfer hpt 	= new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
 			
 		try { // sample interaction		
 
 			System.out.println("\n-- Add employee and print it ------------------------");
 
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
+			// a second employee
 			// Employee employee = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
 			hie.addEmployeeToStore(employee, 1, 1);
-
 			System.out.println(employee);
 
 			System.out.println("\n-- Consult vacancy ----------------------------------");
 
 			System.out.println("Deseja consultar vagas por loja(1) ou todas(2)?");
-
 			Scanner s = new Scanner(System.in);
-			int check = s.nextInt();
+			// to control the options
+			boolean check = true;
+			// so we can store the value in memory locally.
+			List<Vacancy> vacancies = null;
 
-			if(check == 1) {
-				hrf.consultAllVacancies();
+			while(check) {
+				int vac = s.nextInt();
+				if (vac == 1) {
+					vacancies = hrf.consultAllVacancies();
+
+					for (Vacancy v : vacancies) {
+						System.out.println(v);
+					}
+					check = false;
+				} else if (vac == 2) {
+					System.out.println("Indique o id da loja (ex: 1): ");
+					int storeId = s.nextInt();
+					vacancies = hrf.consultVacanciesByStoreId(storeId);
+
+					for (Vacancy v : vacancies) {
+						System.out.println(v);
+					}
+					check = false;
+				}
+				else {
+					System.out.println("Indique um valor válido.");
+				}
 			}
-			else if(check == 2) {
-				System.out.println("Indique o id da loja (ex: 1): ");
-				int storeId = s.nextInt();
-				hrf.consultVacanciesByStoreId(storeId);
-			}
+
+			System.out.println("Escolha o id da vaga: ");
+			int vacancyId = s.nextInt();
+
+			hrf.requestTransfer(Vacancy.containsId(vacancies, vacancyId), employee);
 
 			System.out.println("\n-- Add sale and print it ----------------------------");
 			

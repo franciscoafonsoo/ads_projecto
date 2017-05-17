@@ -1,6 +1,8 @@
 package business;
 
 import java.sql.Date;
+import java.util.List;
+import java.util.Objects;
 
 
 public class Vacancy {
@@ -48,5 +50,27 @@ public class Vacancy {
                 ", number=" + number +
                 ", entry_date=" + entry_date +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Vacancy vacancy = (Vacancy) o;
+        return id == vacancy.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
+
+    public static Vacancy containsId(List<Vacancy> list, int id) {
+        for (Vacancy object : list) {
+            if (object.getId() == id) {
+                return object;
+            }
+        }
+        return null;
     }
 }

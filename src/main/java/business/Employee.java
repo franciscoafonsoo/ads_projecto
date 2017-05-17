@@ -15,6 +15,7 @@ public class Employee {
     private int     vat;
     private int     store;
     private int     section;
+    private double  score;
 
     /**
      * Creates a new Employee with the information needed
@@ -29,7 +30,8 @@ public class Employee {
      * @param store
      * @param section
      */
-    public Employee(int id, String name, String pwd, int tlm, Date date, float salary, int vat, int store, int section) {
+    public Employee(int id, String name, String pwd, int tlm, Date date, float salary, int vat, int store, int section,
+                    int score_one, int score_two, int score_three) {
 
         this.id = id;
         this.name = name;
@@ -40,6 +42,7 @@ public class Employee {
         this.vat = vat;
         this.store = store;
         this.section = section;
+        this.score = ((score_one * 0.3) + (score_two * 0.2) + (score_three * 0.1));
     }
 
     public int getId() {
