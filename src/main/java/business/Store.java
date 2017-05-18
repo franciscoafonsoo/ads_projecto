@@ -6,7 +6,9 @@ import java.util.List;
 
 public class Store {
 
-
+    /**
+     * Store's attributes
+     */
     private int id;
     private String address;
     private String district;
@@ -17,12 +19,12 @@ public class Store {
     /**
      * Creates a new Store with the information needed
      *
-     * @param id store if
-     * @param address
-     * @param district
-     * @param tlm
-     * @param fax
-     * @param email
+     * @param id an Integer representing the store's id
+     * @param address a String representing the store's address
+     * @param district a String representing the store's
+     * @param tlm an Integer representing the store's
+     * @param fax an Integer representing the store's
+     * @param email a String representing the store's
      */
     public Store(int id, String address, String district, int tlm, int fax, String email) {
         this.id = id;
@@ -118,6 +120,8 @@ public class Store {
     }
 
     /**
+     * Returns a string representing the object
+     *
      * @return a String that represents a Store
      */
     @Override

@@ -25,7 +25,15 @@ public class TransferMapper {
             "INSERT INTO transfers (id, vacancy_id, employee_id, score, entry_date)" +
                     " VALUES (DEFAULT, ?, ?, ?, ?)";
 
-
+    /**
+     * Inserts a new transfer into the database
+     *
+     * @param vacancy_id the vacancy id
+     * @param employee_id the employee id
+     * @param score the employee's score
+     * @return the id of the database entry
+     * @throws PersistenceException if the insert query failed
+     */
     public static int insert(int vacancy_id, int employee_id, double score) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepareGetGenKey(INSERT_TRANSFER_SQL)) {
 
@@ -50,6 +58,13 @@ public class TransferMapper {
     private static final String UPDATE_TRANSFER_SQL =
             "UPDATE transfers SET is_processed = ? WHERE id = ?";
 
+    /**
+     * Updates a vacancy
+     *
+     * @param transfer_id the id of the transfer
+     * @param is_processed if it was processed or not
+     * @throws PersistenceException  if the insert query failed
+     */
     public static void update(int transfer_id, boolean is_processed) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(UPDATE_TRANSFER_SQL)) {
             statement.setBoolean(1, is_processed);
@@ -63,17 +78,14 @@ public class TransferMapper {
 
     private static final String GET_ALL_TRANSFERS_SQL = "SELECT * FROM transfers";
 
-    public static List<Transfer> getAllTransfers() throws PersistenceException {
-
-        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_ALL_TRANSFERS_SQL)) {
-            try (ResultSet rs = statement.executeQuery()) {
-                return loadSeveralTransfers(rs);
-            }
-        } catch (SQLException e) {
-            throw new PersistenceException("Unable to fetch all Transfers", e);
-        }
-    }
-
+    /**
+     * Creates a Transfer object from a result set retrieved from the database.
+     *
+     * @requires rs.next() was already executed
+     * @param rs The result set with the information to create a transfer.
+     * @return A new Transfer loaded from the database.
+     * @throws PersistenceException In case there is an error accessing the database.
+     */
     private static Transfer loadTransfer(ResultSet rs) throws PersistenceException {
         Transfer transfer;
         try {
@@ -92,6 +104,13 @@ public class TransferMapper {
 
     private static final String GET_TRANSFERS_BY_VACANCY_ID = "SELECT * FROM transfers WHERE vacancy_id = ?";
 
+    /**
+     * Gets a list of Transfers by vacancy
+     *
+     * @param vacancy_id the vacancy id
+     * @return a List of Transfers
+     * @throws PersistenceException In case there is an error accessing the database.
+     */
     public static List<Transfer> getTransfersByVacancyId(int vacancy_id) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_TRANSFERS_BY_VACANCY_ID)) {
             statement.setInt(1, vacancy_id);
@@ -103,6 +122,15 @@ public class TransferMapper {
         }
     }
 
+    /**
+     * Creates a list of Employees
+     *
+     * @requires rs.next() was already executed
+     * @param rs The result set with the information to create the list.
+     * @return a List of Transfers
+     * @throws PersistenceException In case there is an error accessing the database.
+     * @throws SQLException
+     */
     public static List<Transfer> loadSeveralTransfers(ResultSet rs) throws SQLException, PersistenceException {
         List<Transfer> transfers = new LinkedList<Transfer>();
 

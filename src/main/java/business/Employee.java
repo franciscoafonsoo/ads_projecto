@@ -7,7 +7,9 @@ import java.sql.Date;
 
 public class Employee {
 
-
+    /**
+     *  Employee's attributes
+     */
     private int     id;
     private String  name;
     private String  pwd;
@@ -21,16 +23,22 @@ public class Employee {
     private double  score;
 
     /**
-     * Creates a new Employee with the information needed
-     *  @param id
-     * @param name Name of Employee
-     * @param pwd
-     * @param tlm
-     * @param entry_date
-     * @param salary
-     * @param vat
-     * @param store
-     * @param section
+     * Constructor for an Employee object.
+     * Calculates the employee score based on his three scores
+     *
+     * @param id an Integer representing the employee's id
+     * @param name a String representing the employee's name
+     * @param pwd a String representing the employee's password
+     * @param tlm an Integer representing the employee's phone number
+     * @param entry_date a Date representing the employee's entry date in the system
+     * @param birth a Date representing the employee's birthday
+     * @param salary a Double representing the employee's salary
+     * @param vat an Integer representing the employee's vat number
+     * @param store an Integer representing the employee's store ID
+     * @param section an Integer representing the employee's section ID
+     * @param score_one an Integer representing the employee's first score
+     * @param score_two an Integer representing the employee's second score
+     * @param score_three an Integer representing the employee's third score
      */
     public Employee(int id, String name, String pwd, int tlm, Date entry_date, Date birth, float salary, int vat, int store, int section,
                     int score_one, int score_two, int score_three) {
@@ -129,8 +137,13 @@ public class Employee {
         this.score = score;
     }
 
-    // round score to a places value
-    private static double round(double value, int places) {
+    /**
+     * Rounds up a Double value, to a given maximum number of digits
+     *
+     * @param value a Double representing the value to be rounded up
+     * @param places an Integer representing the maximum number of digits
+     * @return the rounded Double value
+     */    private static double round(double value, int places) {
         if (places < 0) throw new IllegalArgumentException();
 
         BigDecimal bd = new BigDecimal(value);
@@ -138,6 +151,12 @@ public class Employee {
         return bd.doubleValue();
     }
 
+
+    /**
+     * Returns a string representing the object
+     *
+     * @return a string representing the object
+     */
     @Override
     public String toString() {
         return "Employee @ " +

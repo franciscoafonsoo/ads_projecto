@@ -6,8 +6,14 @@ import dataaccess.VacancyMapper;
 import java.security.Permission;
 import java.util.List;
 
-
 public class CatalogVacancies {
+
+    /**
+     * Gets a list of all vacancies
+     *
+     * @return a List of Vacancy objects
+     * @throws ApplicationException if the select query failed
+     */
     public List<Vacancy> consultAllVacancies() throws ApplicationException {
         try {
             return VacancyMapper.getAllVacancies();
@@ -16,6 +22,13 @@ public class CatalogVacancies {
         }
     }
 
+    /**
+     * Gets a list of all vacancies of a given store
+     *
+     * @param storeId an Integer representing the store's ID
+     * @return a List of Vacancy objects
+     * @throws ApplicationException if the select query failed
+     */
     public List<Vacancy> consultVacanciesByStore(int storeId) throws ApplicationException {
         try {
             return VacancyMapper.getAllVacanciesByStoreId(storeId);
@@ -24,6 +37,12 @@ public class CatalogVacancies {
         }
     }
 
+    /**
+     * Gets all vacancies
+     *
+     * @return a List on Vacancies
+     * @throws ApplicationException if the select query failed
+     */
     public List<Vacancy> getAllVacancies() throws ApplicationException {
         try {
             return VacancyMapper.getAllVacancies();
@@ -32,6 +51,14 @@ public class CatalogVacancies {
         }
     }
 
+    /**
+     * Updates a vacancy
+     *
+     * @param id an Integer representing the vacancy's ID
+     * @param free an Integer representing the number of vacancies
+     * @param occupied an Integer representing the number of vacancies filled
+     * @throws ApplicationException if the select query failed
+     */
     public void updateVacancies(int id, int free, int occupied) throws ApplicationException {
         try {
             VacancyMapper.update(id, free, occupied);

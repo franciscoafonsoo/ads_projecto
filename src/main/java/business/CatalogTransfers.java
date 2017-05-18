@@ -11,6 +11,14 @@ import java.util.*;
 
 public class CatalogTransfers {
 
+    /**
+     * Inserts a new request for transfer
+     *
+     * @param vacancy a Vacancy object representing the vacancy to which the employee is requesting transfer
+     * @param employee an Employee object representing the employee requesting transfer
+     * @return in Integer representing the request id
+     * @throws ApplicationException if the vacancy is null, or if the insert of the request failed
+     */
     public static int requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException{
         try {
             if (vacancy != null)
@@ -30,10 +38,10 @@ public class CatalogTransfers {
      *
      * Se não, vou calcular os scores, e fazer update conforme.
      *
+     * @param employeeCatalog an EmployeeCatalog
+     * @param vacanciesCatalog a VacanciesCatalog
      * @return Transferencias processadas automaticamente.
      * @throws ApplicationException Se algo falhar
-     * @param employeeCatalog
-     * @param vacanciesCatalog
      */
 
     public static List<Transfer> processTransfers(CatalogEmployee employeeCatalog, CatalogVacancies vacanciesCatalog) throws ApplicationException {
@@ -67,7 +75,6 @@ public class CatalogTransfers {
                         }
 
                         // A MAIOR JARDA DE JAVA ALGUMA VEZ VISTA
-                        System.out.println(transfers);
 
                         // lambda para organizar as transferencias por score e por data.
                         // transfers.sort(Comparator.comparingDouble(Transfer::getScore));
@@ -78,11 +85,8 @@ public class CatalogTransfers {
                             return cmt;
                         });
 
-                        System.out.println(transfers);
 
-                        System.out.println("before: " + transfers.size());
                         transfers.subList(vacancy.getFree(), transfers.size()).clear();
-                        System.out.println("after: " + transfers.size());
                         vacanciesCatalog.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
 
                         for (Transfer t : transfers) {
@@ -100,17 +104,4 @@ public class CatalogTransfers {
             throw new ApplicationException("Unable to process Transfers", e);
         }
     }
-
-    /**
-     * ao receber uma lista de transferencias
-     * vai determinar se existem mais candidatos para o numero de vagas
-     * se sim, vai comparar as pontuações e excluir os empregados
-     * com a pontuação mais baixa.
-     * returns a nova lista de trasnferencias.
-     */
-    public static boolean checkForConflits(List<Transfer> transfers) {
-        return false;
-    }
-
-
 }

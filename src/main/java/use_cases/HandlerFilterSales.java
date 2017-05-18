@@ -9,14 +9,16 @@ import business.CatalogSale;
 import business.Sale;
 
 public class HandlerFilterSales {
-	
+
+	/**
+	 * attributes
+	 */
 	private CatalogSale saleCatalog;
 	
 	/**
 	 * Creates a handler for the filter sales use case
 	 * 
 	 * @param saleCatalog    A sale's catalog
-	 * @param productCatalog A product's catalog
 	 */
 	public HandlerFilterSales(CatalogSale saleCatalog) {
 		this.saleCatalog = saleCatalog;

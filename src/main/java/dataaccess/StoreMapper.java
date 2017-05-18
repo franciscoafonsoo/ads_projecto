@@ -20,17 +20,15 @@ public class StoreMapper {
     }
 
     /////////////////////////////////////////////////////////////////////////
-    // TODO: add manager later
     // SQL statement: selects a store by its id
     private static final String GET_STORE_SQL =
             "SELECT id, address, district, tlm, fax, email FROM store WHERE id = ?";
 
     /**
-     * TODO: javadoc
-     * Gets a sale by its id
+     * Gets a Store by it's id
      *
-     * @param store_id The sale id to search for
-     * @return The new object that represents an in-memory sale
+     * @param store_id The store id to search for
+     * @return The new object that represents an in-memory store
      * @throws PersistenceException In case there is an error accessing the database.
      */
     public static Store getStoreById(int store_id) throws PersistenceException {
@@ -55,6 +53,14 @@ public class StoreMapper {
         }
     }
 
+    /**
+     * Creates a Store object from a result set retrieved from the database.
+     *
+     * @requires rs.next() was already executed
+     * @param rs The result set with the information to create a Store.
+     * @return A new Store loaded from the database.
+     * @throws PersistenceException In case there is an error accessing the database.
+     */
     private static Store loadStore(ResultSet rs) throws PersistenceException {
         Store store;
         try {
@@ -70,9 +76,5 @@ public class StoreMapper {
             throw new RecordNotFoundException ("Employee does not exist	", e);
         }
         return store;
-    }
-
-
-    public static void addEmployeeToStore(int id, int id1, int sectionId) {
     }
 }

@@ -6,6 +6,10 @@ import java.sql.Date;
  * Created by sherby on 17/05/2017.
  */
 public class Transfer {
+
+    /**
+     *  Transfer's attributes
+     */
     private int id;
     private int vacancy_id;
     private int employee_id;
@@ -13,6 +17,16 @@ public class Transfer {
     private Date entry_date;
     private boolean is_processed;
 
+    /**
+     * Creates a new Transfer with the information needed
+     *
+     * @param id an Integer representing the Transfer's ID
+     * @param vacancy_id an Integer representing the Transfer's
+     * @param employee_id an Integer representing the Transfer's
+     * @param score a Double representing the Transfer's
+     * @param entry_date a Date representing the Transfer's
+     * @param is_processed a boolean representing the Transfer's
+     */
     public Transfer(int id, int vacancy_id, int employee_id, double score, Date entry_date, boolean is_processed) {
 
         this.id = id;
@@ -51,6 +65,11 @@ public class Transfer {
         return is_processed;
     }
 
+    /**
+     * Returns a string representing the object
+     *
+     * @return a String that represents a Transfer
+     */
     @Override
     public String toString() {
         return "Transfer @" +
