@@ -6,6 +6,7 @@ import dataaccess.PersistenceException;
 import dataaccess.TransferMapper;
 import dataaccess.VacancyMapper;
 
+import javax.annotation.processing.SupportedSourceVersion;
 import java.util.*;
 
 public class CatalogTransfers {
@@ -37,13 +38,12 @@ public class CatalogTransfers {
 
     public static List<Transfer> processTransfers(CatalogEmployee employeeCatalog, CatalogVacancies vacanciesCatalog) throws ApplicationException {
         try {
-            List<Transfer> printTransfers = new LinkedList<>();
+            List<Transfer> printTransfers = new ArrayList<>();
             List<Vacancy> vacancies = vacanciesCatalog.getAllVacancies();
 
             for(Vacancy vacancy: vacancies) {
                 List<Transfer> transfers = TransferMapper.getTransfersByVacancyId(vacancy.getId());
 
-                System.out.println(transfers.size());
                 // caso vagas sejam menores ou iguais a transferencias, é só processar
                 if(!transfers.isEmpty()) {
 
@@ -67,9 +67,10 @@ public class CatalogTransfers {
                         }
 
                         // A MAIOR JARDA DE JAVA ALGUMA VEZ VISTA
+                        System.out.println(transfers);
 
                         // lambda para organizar as transferencias por score e por data.
-                        // transfers.sort((o1, o2) -> Double.compare(o1.getScore(), o2.getScore()));
+                        // transfers.sort(Comparator.comparingDouble(Transfer::getScore));
                         transfers.sort((Transfer o1, Transfer o2) -> {
                             int cmt = Double.compare(o1.getScore(), o2.getScore());
                             if (cmt == 0)
@@ -77,8 +78,11 @@ public class CatalogTransfers {
                             return cmt;
                         });
 
-                        transfers.subList(vacancy.getFree(), transfers.size()).clear();
+                        System.out.println(transfers);
 
+                        System.out.println("before: " + transfers.size());
+                        transfers.subList(vacancy.getFree(), transfers.size()).clear();
+                        System.out.println("after: " + transfers.size());
                         vacanciesCatalog.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
 
                         for (Transfer t : transfers) {

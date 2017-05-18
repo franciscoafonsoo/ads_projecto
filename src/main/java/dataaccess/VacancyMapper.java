@@ -107,7 +107,7 @@ public class VacancyMapper {
     private static final String UPDATE_VACANCY_SQL =
             "UPDATE vacancies SET free = ?, occupied = ? WHERE id = ?";
 
-    public static void update(int free, int occupied, int vacancy_id) throws PersistenceException {
+    public static void update(int vacancy_id, int free, int occupied) throws PersistenceException {
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(UPDATE_VACANCY_SQL)) {
             statement.setInt(1, free);
             statement.setInt(2, occupied);

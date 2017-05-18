@@ -74,7 +74,7 @@ public class SimpleClient {
 			Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
 			Store store = hie.addEmployeeToStore(employee, 1, 2);
-			Store store2 = hie.addEmployeeToStore(employee2, 2, 1);
+			Store store2 = hie.addEmployeeToStore(employee2, 2, 2);
 
 			// visto que está a ser actualizado, é necessário obter o employee outra vez.
 			// e não vai precisar de query, visto que está em cache.
@@ -124,12 +124,14 @@ public class SimpleClient {
 				}
 			}
 
-			System.out.println("Escolha o id da vaga: ");
-			int vacancyId = s.nextInt();
+			//System.out.println("Escolha o id da vaga: ");
+			// int vacancyId = s.nextInt();
 
-			int transfer_id = hrf.requestTransfer(Vacancy.containsId(vacancies, vacancyId), employee);
+			int transfer_id = hrf.requestTransfer(Vacancy.containsId(vacancies, 1), employee);
+			int transfer_id2 = hrf.requestTransfer(Vacancy.containsId(vacancies, 1), employee2);
 
-			System.out.println("Transferencia pedida com o id: " + transfer_id);
+			System.out.println("Transferencias pedidas com o id's: " + transfer_id
+			+ " ," + transfer_id2);
 
 			/////////////////////////
 			// Terceiro caso de Uso /
