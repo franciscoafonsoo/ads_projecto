@@ -87,4 +87,7 @@ public class TransferMapper {
         }
         return transfer;
     }
+
+    public static List<Transfer> getTransfersByVacancyId(int id) {
+    }
 }

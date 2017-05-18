@@ -13,7 +13,6 @@ public class Store {
     private int tlm;
     private int fax;
     private String email;
-    private List<Employee> employeeList;
 
     /**
      * Creates a new Store with the information needed
@@ -32,7 +31,6 @@ public class Store {
         this.tlm = tlm;
         this.fax = fax;
         this.email = email;
-        this.employeeList = new ArrayList<>();
     }
 
     /**
@@ -120,21 +118,6 @@ public class Store {
     }
 
     /**
-     * Adds a new Employee to the EmployeeList of store
-     * @param e Employee to add to store
-     */
-    public void addEmployeeToStore(Employee e) {
-        this.employeeList.add(e);
-    }
-
-    /**
-     * @return the store's EmployeeList
-     */
-    public List<Employee> getEmployeeList() {
-        return employeeList;
-    }
-
-    /**
      * @return a String that represents a Store
      */
     @Override
@@ -145,7 +128,6 @@ public class Store {
                 ", district='" + district + '\'' +
                 ", tlm=" + tlm +
                 ", fax=" + fax +
-                ", email='" + email + '\'' +
-                ", employeeList=" + employeeList;
+                ", email='" + email;
     }
 }

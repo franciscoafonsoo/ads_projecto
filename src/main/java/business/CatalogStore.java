@@ -23,13 +23,7 @@ public class CatalogStore {
 
             Store store = StoreMapper.getStoreById(storeId);
 
-            if(store.getEmployeeList().contains(e)) {
-                throw new ApplicationException("Employee already in store");
-            }
-            else {
-                store.addEmployeeToStore(e);
-                EmployeeMapper.update(e.getId(), storeId, sectionId);
-            }
+            EmployeeMapper.update(e.getId(), storeId, sectionId);
 
             return store;
 

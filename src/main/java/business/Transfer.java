@@ -6,12 +6,12 @@ import java.sql.Date;
  * Created by sherby on 17/05/2017.
  */
 public class Transfer {
-    private final int id;
-    private final int vacancy_id;
-    private final int employee_id;
-    private final double score;
-    private final Date entry_date;
-    private final boolean is_processed;
+    private int id;
+    private int vacancy_id;
+    private int employee_id;
+    private double score;
+    private Date entry_date;
+    private boolean is_processed;
 
     public Transfer(int id, int vacancy_id, int employee_id, double score, Date entry_date, boolean is_processed) {
 
@@ -37,6 +37,10 @@ public class Transfer {
 
     public double getScore() {
         return score;
+    }
+
+    public void setScore(double score) {
+        this.score = score;
     }
 
     public Date getEntry_date() {

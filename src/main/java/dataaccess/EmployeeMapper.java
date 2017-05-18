@@ -198,6 +198,7 @@ public class EmployeeMapper {
                     rs.getString("password"),
                     rs.getInt("tlm"),
                     rs.getDate("entry_date"),
+                    rs.getDate("birth"),
                     rs.getFloat("salary"),
                     rs.getInt("vat"),
                     rs.getInt("store_id"),

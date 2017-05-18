@@ -3,6 +3,7 @@ package dataaccess;
 
 import business.Vacancy;
 
+import javax.xml.crypto.Data;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -72,7 +73,8 @@ public class VacancyMapper {
                     rs.getInt("id"),
                     rs.getInt("store_id"),
                     rs.getInt("section_id"),
-                    rs.getInt("numbers"),
+                    rs.getInt("free"),
+                    rs.getInt("occupied"),
                     rs.getDate("entry_date")
             );
         } catch (SQLException e) {
@@ -80,5 +82,27 @@ public class VacancyMapper {
         }
         return vacancy;
     }
+
+    private static final String GET_VACANCY_BY_ID = "SELECT * FROM vacancies WHERE id = ?";
+
+    public static Vacancy getVacancyById(int vacancy_id) throws PersistenceException {
+
+        if(cachedVacancy.containsKey(vacancy_id))
+            return cachedVacancy.get(vacancy_id);
+
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_VACANCY_BY_ID)) {
+            statement.setInt(1, vacancy_id);
+
+            try (ResultSet rs = statement.executeQuery()) {
+                rs.next();
+                Vacancy vacancy = loadVacancy(rs);
+                cachedVacancy.put(vacancy.getId(), vacancy);
+                return vacancy;
+            }
+        } catch (SQLException e) {
+            throw new RecordNotFoundException("Vacancy not found", e);
+        }
+    }
+
 }
 

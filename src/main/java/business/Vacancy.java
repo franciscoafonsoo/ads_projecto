@@ -6,18 +6,20 @@ import java.util.Objects;
 
 
 public class Vacancy {
-    private final int id;
-    private final int store_id;
-    private final int section_id;
-    private final int number;
-    private final Date entry_date;
+    private int id;
+    private int store_id;
+    private int section_id;
+    private int free;
+    private int occupied;
+    private Date entry_date;
 
-    public Vacancy(int id, int store_id, int section_id, int number, Date entry_date) {
 
+    public Vacancy(int id, int store_id, int section_id, int free, int occupied, Date entry_date) {
         this.id = id;
         this.store_id = store_id;
         this.section_id = section_id;
-        this.number = number;
+        this.free = free;
+        this.occupied = occupied;
         this.entry_date = entry_date;
     }
 
@@ -35,8 +37,20 @@ public class Vacancy {
         return section_id;
     }
 
-    public int getNumber() {
-        return number;
+    public int getFree() {
+        return free;
+    }
+
+    public void setFree(int free) {
+        this.free = free;
+    }
+
+    public int getOccupied() {
+        return occupied;
+    }
+
+    public void setOccupied(int occupied) {
+        this.occupied = occupied;
     }
 
     public Date getEntry_date() {
@@ -49,7 +63,8 @@ public class Vacancy {
                 "id=" + id +
                 ", store_id=" + store_id +
                 ", section_id=" + section_id +
-                ", number=" + number +
+                ", free=" + free +
+                ", occupied=" + occupied +
                 ", entry_date=" + entry_date;
     }
 

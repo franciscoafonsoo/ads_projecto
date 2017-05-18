@@ -12,7 +12,8 @@ public class Employee {
     private String  name;
     private String  pwd;
     private int     tlm;
-    private Date    date;
+    private Date    entryDate;
+    private Date    birth;
     private float   salary;
     private int     vat;
     private int     store;
@@ -21,25 +22,25 @@ public class Employee {
 
     /**
      * Creates a new Employee with the information needed
-     *
-     * @param id
+     *  @param id
      * @param name Name of Employee
      * @param pwd
      * @param tlm
-     * @param date
+     * @param entry_date
      * @param salary
      * @param vat
      * @param store
      * @param section
      */
-    public Employee(int id, String name, String pwd, int tlm, Date date, float salary, int vat, int store, int section,
+    public Employee(int id, String name, String pwd, int tlm, Date entry_date, Date birth, float salary, int vat, int store, int section,
                     int score_one, int score_two, int score_three) {
 
         this.id = id;
         this.name = name;
         this.pwd = pwd;
         this.tlm = tlm;
-        this.date = date;
+        this.entryDate = entry_date;
+        this.birth = birth;
         this.salary = salary;
         this.vat = vat;
         this.store = store;
@@ -80,12 +81,12 @@ public class Employee {
         this.tlm = tlm;
     }
 
-    public Date getDate() {
-        return date;
+    public Date getEntryDate() {
+        return entryDate;
     }
 
-    public void setDate(Date date) {
-        this.date = date;
+    public Date getBirth() {
+        return birth;
     }
 
     public float getSalary() {
@@ -144,7 +145,8 @@ public class Employee {
                 ", name='" + name + '\'' +
                 ", pwd='" + pwd + '\'' +
                 ", tlm=" + tlm +
-                ", date=" + date +
+                ", Entry_date=" + entryDate +
+                ", birth=" + birth +
                 ", salary=" + salary +
                 ", vat=" + vat +
                 ", store=" + store +
