@@ -70,14 +70,17 @@ public class SimpleClient {
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
 
 			// a second employee for testing purpose
-			// Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
+			Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321456);
 
 			Store store = hie.addEmployeeToStore(employee, 1, 2);
+			Store store2 = hie.addEmployeeToStore(employee2, 2, 1);
 
 			// visto que está a ser actualizado, é necessário obter o employee outra vez.
 			// e não vai precisar de query, visto que está em cache.
 
 			employee = hie.getEmployee(employee.getId());
+			employee2 = hie.getEmployee(employee2.getId());
+			System.out.println(employee2);
 			System.out.println(employee);
 
 			// para ver a loja
@@ -133,22 +136,8 @@ public class SimpleClient {
 
 			System.out.println("\n-- Process transfers --------------------------------" + '\n');
 
-			List<Transfer> transfers = hpt.confirmTransfers();
-			boolean conflits = hpt.checkForConflits(transfers);
+			List<Transfer> transfers = hpt.processTransfers();
 
-			if(conflits) {
-				hpt.processTransfers(transfers);
-			}
-			else {
-				System.out.println("-- Transferencias não contêm conflitos --------------");
-				for(Transfer t: transfers)
-					System.out.println(t);
-
-				System.out.println("Confirmar as transferencias (1)?");
-				int confirm = s.nextInt();
-				if(confirm == 1)
-					hpt.processTransfers();
-			}
 			System.out.println("\n-- FIM DOS CASOS DE USO ----------------------------" + '\n');
 
 			// creates a new sale (returns it)

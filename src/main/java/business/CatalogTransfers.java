@@ -49,7 +49,7 @@ public class CatalogTransfers {
      * @throws ApplicationException Se algo falhar
      */
 
-    public static List<Transfer> confirmTransfers() throws ApplicationException {
+    public static List<Transfer> processTransfers() throws ApplicationException {
         try {
             List<Transfer> printTransfers = new LinkedList<>();
             List<Vacancy> vacancies = VacancyMapper.getAllVacancies();
@@ -118,8 +118,5 @@ public class CatalogTransfers {
         return false;
     }
 
-
-    public static void processTransfers() {
-    }
 
 }
