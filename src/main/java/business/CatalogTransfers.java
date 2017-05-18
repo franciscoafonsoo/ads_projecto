@@ -38,7 +38,7 @@ public class CatalogTransfers {
     public static List<Transfer> processTransfers(CatalogEmployee employeeCatalog, CatalogVacancies vacanciesCatalog) throws ApplicationException {
         try {
             List<Transfer> printTransfers = new LinkedList<>();
-            List<Vacancy> vacancies = CatalogVacancies.getAllVacancies();
+            List<Vacancy> vacancies = vacanciesCatalog.getAllVacancies();
 
             for(Vacancy vacancy: vacancies) {
                 List<Transfer> transfers = TransferMapper.getTransfersByVacancyId(vacancy.getId());
@@ -49,18 +49,18 @@ public class CatalogTransfers {
 
                     if (vacancy.getFree() >= transfers.size()) {
 
-                        CatalogVacancies.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
+                        vacanciesCatalog.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
 
                         for (Transfer t : transfers) {
                             TransferMapper.update(t.getId(), true);
                             // chamar catalogo
-                            EmployeeMapper.update(t.getEmployee_id(), vacancy.getStore_id(), vacancy.getSection_id());
+                            employeeCatalog.changeEmployee(t.getEmployee_id(), vacancy.getStore_id(), vacancy.getSection_id());
                             printTransfers.add(t);
                         }
                     } else {
                         for (Transfer t : transfers) {
                             // chamar catalog
-                            Employee e = EmployeeMapper.getEmployeeById(t.getEmployee_id());
+                            Employee e = employeeCatalog.getEmployee(t.getEmployee_id());
                             if (e.getSection() == vacancy.getSection_id()) {
                                 t.setScore(t.getScore() * 1.5);
                             }
@@ -79,7 +79,7 @@ public class CatalogTransfers {
 
                         transfers.subList(vacancy.getFree(), transfers.size()).clear();
 
-                        CatalogVacancies.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
+                        vacanciesCatalog.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
 
                         for (Transfer t : transfers) {
                             TransferMapper.update(t.getId(), true);

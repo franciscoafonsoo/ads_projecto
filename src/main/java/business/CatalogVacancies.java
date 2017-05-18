@@ -8,7 +8,7 @@ import java.util.List;
 
 
 public class CatalogVacancies {
-    public static List<Vacancy> consultAllVacancies() throws ApplicationException {
+    public List<Vacancy> consultAllVacancies() throws ApplicationException {
         try {
             return VacancyMapper.getAllVacancies();
         } catch (PersistenceException e1) {
@@ -16,7 +16,7 @@ public class CatalogVacancies {
         }
     }
 
-    public static List<Vacancy> consultVacanciesByStore(int storeId) throws ApplicationException {
+    public List<Vacancy> consultVacanciesByStore(int storeId) throws ApplicationException {
         try {
             return VacancyMapper.getAllVacanciesByStoreId(storeId);
         } catch (PersistenceException e1) {
@@ -24,7 +24,7 @@ public class CatalogVacancies {
         }
     }
 
-    public static List<Vacancy> getAllVacancies() throws ApplicationException {
+    public List<Vacancy> getAllVacancies() throws ApplicationException {
         try {
             return VacancyMapper.getAllVacancies();
         } catch (PersistenceException e) {
@@ -32,7 +32,7 @@ public class CatalogVacancies {
         }
     }
 
-    public static void updateVacancies(int id, int free, int occupied) throws ApplicationException {
+    public void updateVacancies(int id, int free, int occupied) throws ApplicationException {
         try {
             VacancyMapper.update(id, free, occupied);
         } catch (PersistenceException e) {

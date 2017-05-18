@@ -37,4 +37,12 @@ public class CatalogEmployee {
             throw new ApplicationException("Unable to fetch employee", e);
         }
     }
+
+    public void changeEmployee(int id, int store_id, int section_id) throws ApplicationException {
+        try {
+            EmployeeMapper.update(id, store_id, section_id);
+        } catch (PersistenceException e) {
+            throw new ApplicationException("Unable to update employee", e);
+        }
+    }
 }
