@@ -47,25 +47,27 @@ public class TransferMapper {
         }
     }
 
+    private static final String UPDATE_TRANSFER_SQL =
+            "UPDATE transfers SET is_processed = ? WHERE id = ?";
+
+    public static void update(int transfer_id, boolean is_processed) throws PersistenceException {
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(UPDATE_TRANSFER_SQL)) {
+            statement.setBoolean(1, is_processed);
+            statement.setInt(2, transfer_id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new PersistenceException("Internal error!", e);
+        }
+        cachedTransfer.remove(transfer_id);
+    }
+
     private static final String GET_ALL_TRANSFERS_SQL = "SELECT * FROM transfers";
 
     public static List<Transfer> getAllTransfers() throws PersistenceException {
 
         try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_ALL_TRANSFERS_SQL)) {
             try (ResultSet rs = statement.executeQuery()) {
-                List<Transfer> transfers = new LinkedList<Transfer>();
-
-                while(rs.next()) {
-                    int transfer_id = rs.getInt("id");
-                    if (cachedTransfer.containsKey(transfer_id))
-                        transfers.add(cachedTransfer.get(transfer_id));
-                    else {
-                        Transfer transfer = loadTransfer(rs);
-                        transfers.add(transfer);
-                        cachedTransfer.put(transfer_id, transfer);
-                    }
-                }
-                return transfers;
+                return loadSeveralTransfers(rs);
             }
         } catch (SQLException e) {
             throw new PersistenceException("Unable to fetch all Transfers", e);
@@ -88,11 +90,32 @@ public class TransferMapper {
         return transfer;
     }
 
-    public static List<Transfer> getTransfersByVacancyId(int id) {
-        return null; //TODO
+    private static final String GET_TRANSFERS_BY_VACANCY_ID = "SELECT * FROM transfers WHERE vacancy_id = ?";
+
+    public static List<Transfer> getTransfersByVacancyId(int vacancy_id) throws PersistenceException {
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(GET_TRANSFERS_BY_VACANCY_ID)) {
+            statement.setInt(1, vacancy_id);
+            try (ResultSet rs = statement.executeQuery()) {
+                return loadSeveralTransfers(rs);
+            }
+        } catch (SQLException e) {
+            throw new PersistenceException("Unable to fetch all Transfers", e);
+        }
     }
 
-    public static void update(int id, boolean b) {
-        //TODO
+    public static List<Transfer> loadSeveralTransfers(ResultSet rs) throws SQLException, PersistenceException {
+        List<Transfer> transfers = new LinkedList<Transfer>();
+
+        while(rs.next()) {
+            int transfer_id = rs.getInt("id");
+            if (cachedTransfer.containsKey(transfer_id))
+                transfers.add(cachedTransfer.get(transfer_id));
+            else {
+                Transfer transfer = loadTransfer(rs);
+                transfers.add(transfer);
+                cachedTransfer.put(transfer_id, transfer);
+            }
+        }
+        return transfers;
     }
 }

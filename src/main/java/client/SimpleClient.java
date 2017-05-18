@@ -58,7 +58,7 @@ public class SimpleClient {
 		HandleRequestTransfer hrf 	= new HandleRequestTransfer(employeeCatalog, transfersCatalog, vacanciesCatalog);
 
 		// this client deals with the Process Transfer
-		HandleProcessTransfer hpt 	= new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
+		HandleProcessTransfer hpt 	= new HandleProcessTransfer(employeeCatalog, transfersCatalog, vacanciesCatalog);
 			
 		try {
 
@@ -71,7 +71,7 @@ public class SimpleClient {
 			Employee employee = hie.newEmployee("Empr Um", "password", "01/01/2009", 919122432, 545321456);
 
 			// a second employee for testing purpose
-			Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321456);
+			Employee employee2 = hie.newEmployee("Empr Dois", "password", "01/02/2009", 919122432, 545321457);
 
 			Store store = hie.addEmployeeToStore(employee, 1, 2);
 			Store store2 = hie.addEmployeeToStore(employee2, 2, 1);
@@ -138,6 +138,10 @@ public class SimpleClient {
 			System.out.println("\n-- Process transfers --------------------------------" + '\n');
 
 			List<Transfer> transfers = hpt.processTransfers();
+
+			for (Transfer t: transfers) {
+				System.out.println(t);
+			}
 
 			System.out.println("\n-- FIM DOS CASOS DE USO ----------------------------" + '\n');
 

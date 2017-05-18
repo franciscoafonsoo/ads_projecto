@@ -104,8 +104,18 @@ public class VacancyMapper {
         }
     }
 
-    public static void update(int id, int i, int size) {
-        //TODO
+    private static final String UPDATE_VACANCY_SQL =
+            "UPDATE vacancies SET free = ?, occupied = ? WHERE id = ?";
+
+    public static void update(int free, int occupied, int vacancy_id) throws PersistenceException {
+        try (PreparedStatement statement = DataSource.INSTANCE.prepare(UPDATE_VACANCY_SQL)) {
+            statement.setInt(1, free);
+            statement.setInt(2, occupied);
+            statement.setInt(3, vacancy_id);
+            statement.executeUpdate();
+        } catch (SQLException e) {
+            throw new PersistenceException("Internal error!", e);
+        }
+        cachedVacancy.remove(vacancy_id);
     }
 }
-

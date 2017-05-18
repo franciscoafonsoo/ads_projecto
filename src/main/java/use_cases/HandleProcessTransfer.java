@@ -7,17 +7,17 @@ import java.util.List;
 
 public class HandleProcessTransfer {
     private CatalogEmployee     employeeCatalog;
-    private CatalogStore        storeCatalog;
     private CatalogTransfers    transfersCatalog;
+    private CatalogVacancies    vacanciesCatalog;
 
-    public HandleProcessTransfer(CatalogEmployee employeeCatalog, CatalogStore storeCatalog, CatalogTransfers transfersCatalog) {
+    public HandleProcessTransfer(CatalogEmployee employeeCatalog, CatalogTransfers transfersCatalog, CatalogVacancies vacanciesCatalog) {
         this.employeeCatalog    = employeeCatalog;
-        this.storeCatalog       = storeCatalog;
         this.transfersCatalog   = transfersCatalog;
+        this.vacanciesCatalog   = vacanciesCatalog;
     }
 
     public List<Transfer> processTransfers() throws ApplicationException {
-        return CatalogTransfers.processTransfers();
+        return CatalogTransfers.processTransfers(employeeCatalog, vacanciesCatalog);
     }
 
 }

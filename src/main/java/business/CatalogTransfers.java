@@ -31,54 +31,60 @@ public class CatalogTransfers {
      *
      * @return Transferencias processadas automaticamente.
      * @throws ApplicationException Se algo falhar
+     * @param employeeCatalog
+     * @param vacanciesCatalog
      */
 
-    public static List<Transfer> processTransfers() throws ApplicationException {
+    public static List<Transfer> processTransfers(CatalogEmployee employeeCatalog, CatalogVacancies vacanciesCatalog) throws ApplicationException {
         try {
             List<Transfer> printTransfers = new LinkedList<>();
-            List<Vacancy> vacancies = VacancyMapper.getAllVacancies();
+            List<Vacancy> vacancies = CatalogVacancies.getAllVacancies();
 
             for(Vacancy vacancy: vacancies) {
                 List<Transfer> transfers = TransferMapper.getTransfersByVacancyId(vacancy.getId());
 
+                System.out.println(transfers.size());
                 // caso vagas sejam menores ou iguais a transferencias, é só processar
+                if(!transfers.isEmpty()) {
 
-                if (vacancy.getFree() >= transfers.size()) {
+                    if (vacancy.getFree() >= transfers.size()) {
 
-                    VacancyMapper.update(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
+                        CatalogVacancies.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
 
-                    for (Transfer t : transfers) {
-                        TransferMapper.update(t.getId(), true);
-                        EmployeeMapper.update(t.getEmployee_id(), vacancy.getStore_id(), vacancy.getSection_id());
-                        printTransfers.add(t);
-                    }
-                } else {
-                    // A MAIOR JARDA DE JAVA ALGUMA VEZ VISTA
-
-                    // lambda para organizar as transferencias por score e por data.
-                    // transfers.sort((o1, o2) -> Double.compare(o1.getScore(), o2.getScore()));
-
-                    for(Transfer t: transfers) {
-                        Employee e = EmployeeMapper.getEmployeeById(t.getEmployee_id());
-                        if(e.getSection() == vacancy.getSection_id()) {
-                            t.setScore(t.getScore() * 1.5);
+                        for (Transfer t : transfers) {
+                            TransferMapper.update(t.getId(), true);
+                            // chamar catalogo
+                            EmployeeMapper.update(t.getEmployee_id(), vacancy.getStore_id(), vacancy.getSection_id());
+                            printTransfers.add(t);
                         }
-                    }
+                    } else {
+                        for (Transfer t : transfers) {
+                            // chamar catalog
+                            Employee e = EmployeeMapper.getEmployeeById(t.getEmployee_id());
+                            if (e.getSection() == vacancy.getSection_id()) {
+                                t.setScore(t.getScore() * 1.5);
+                            }
+                        }
 
-                    transfers.sort((Transfer o1, Transfer o2) -> {
-                        int cmt = Double.compare(o1.getScore(), o2.getScore());
-                        if (cmt == 0)
-                            cmt = o1.getEntry_date().compareTo(o2.getEntry_date());
-                        return cmt;
-                    });
+                        // A MAIOR JARDA DE JAVA ALGUMA VEZ VISTA
 
-                    transfers.subList(vacancy.getFree(), transfers.size()).clear();
+                        // lambda para organizar as transferencias por score e por data.
+                        // transfers.sort((o1, o2) -> Double.compare(o1.getScore(), o2.getScore()));
+                        transfers.sort((Transfer o1, Transfer o2) -> {
+                            int cmt = Double.compare(o1.getScore(), o2.getScore());
+                            if (cmt == 0)
+                                cmt = o1.getEntry_date().compareTo(o2.getEntry_date());
+                            return cmt;
+                        });
 
-                    VacancyMapper.update(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
+                        transfers.subList(vacancy.getFree(), transfers.size()).clear();
 
-                    for (Transfer t : transfers) {
-                        TransferMapper.update(t.getId(), true);
-                        printTransfers.add(t);
+                        CatalogVacancies.updateVacancies(vacancy.getId(), (vacancy.getFree() - transfers.size()), transfers.size());
+
+                        for (Transfer t : transfers) {
+                            TransferMapper.update(t.getId(), true);
+                            printTransfers.add(t);
+                        }
                     }
                 }
             }

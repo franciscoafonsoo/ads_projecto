@@ -94,7 +94,7 @@ public class EmployeeMapper {
             throw new PersistenceException ("Internal error!", e);
         }
 
-        cachedEmployee.remove(employee_id);  // sale was changed, remove from cache
+        cachedEmployee.remove(employee_id);
     }
 
     /////////////////////////////////////////////////////////////////////////

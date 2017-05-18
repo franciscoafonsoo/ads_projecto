@@ -3,11 +3,10 @@ package business;
 import dataaccess.PersistenceException;
 import dataaccess.VacancyMapper;
 
+import java.security.Permission;
 import java.util.List;
 
-/**
- * Created by joaomiguelrodrigues on 18/05/17.
- */
+
 public class CatalogVacancies {
     public static List<Vacancy> consultAllVacancies() throws ApplicationException {
         try {
@@ -25,4 +24,19 @@ public class CatalogVacancies {
         }
     }
 
+    public static List<Vacancy> getAllVacancies() throws ApplicationException {
+        try {
+            return VacancyMapper.getAllVacancies();
+        } catch (PersistenceException e) {
+            throw new ApplicationException("Unable to get Vacancies", e);
+        }
+    }
+
+    public static void updateVacancies(int id, int free, int occupied) throws ApplicationException {
+        try {
+            VacancyMapper.update(id, free, occupied);
+        } catch (PersistenceException e) {
+            throw new ApplicationException("Unable to update Vacancies", e);
+        }
+    }
 }
