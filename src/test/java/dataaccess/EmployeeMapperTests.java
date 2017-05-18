@@ -66,7 +66,7 @@ public class EmployeeMapperTests {
             assertEquals("Empr Um", emp.getName());
             assertEquals("password", emp.getPwd());
             assertEquals(919122432, emp.getTlm());
-            assertEquals(d, emp.getDate());
+            assertEquals(d, emp.getBirth());
             assertEquals(900.25, emp.getSalary());
             assertEquals(545321456, emp.getVat());
         } catch (PersistenceException e) {

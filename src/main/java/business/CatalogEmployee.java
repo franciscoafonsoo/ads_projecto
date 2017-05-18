@@ -16,7 +16,7 @@ public class CatalogEmployee {
             java.util.Date b = new java.util.Date(birth);
 
             // value should be calculated according to other parameters, for now this is good.
-            double salary = 900.25;
+            double salary = 900.0;
 
             if(!EmployeeMapper.getEmployeeByVAT(vat)) {
                 int employee_id = EmployeeMapper.insert(name, password, tlm, b, salary, vat);

@@ -134,9 +134,7 @@ public class EmployeeMapper {
     }
 
     private static final String GET_EMPLOYEE_BY_VAT_SQL =
-            "SELECT id, name, password, birth, tlm, entry_date, salary, " +
-                    "vat, score_one, score_two, score_three, filed, store_id, " +
-                    "section_id FROM employee WHERE vat = ?";
+            "SELECT * FROM employee WHERE vat = ?";
 
     public static boolean getEmployeeByVAT(int vat) throws PersistenceException {
 

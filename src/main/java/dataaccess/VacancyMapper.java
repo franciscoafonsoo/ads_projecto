@@ -104,5 +104,8 @@ public class VacancyMapper {
         }
     }
 
+    public static void update(int id, int i, int size) {
+        //TODO
+    }
 }
 

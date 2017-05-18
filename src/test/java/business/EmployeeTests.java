@@ -37,6 +37,12 @@ public class EmployeeTests {
         }
     }
 
+    @Before   // run before each test
+    public void setup() {
+        emp = null;
+        employeeCatalog = new CatalogEmployee();
+    }
+
     @Test
     public void test_newEmployee() {
         try {
@@ -44,8 +50,8 @@ public class EmployeeTests {
             assertEquals("Empr Um", emp.getName());
             assertEquals("password", emp.getPwd());
             assertEquals(919122432, emp.getTlm());
-            assertEquals(new Date("01/01/2009"), emp.getDate());
-            assertEquals(900.25, emp.getSalary());
+            assertEquals(new Date("01/01/2009"), emp.getBirth());
+            assertEquals(900.0, emp.getSalary(), 0.000);
             assertEquals(545321456, emp.getVat());
         } catch (ApplicationException e) {
             e.printStackTrace();
@@ -59,6 +65,7 @@ public class EmployeeTests {
             employeeCatalog.newEmployee("Empr dois", "password2", "02/02/2009", 919122422, 545321456);
             fail("Expecting ApplicationException");
         } catch (ApplicationException e) {
+            e.printStackTrace();
             assertEquals("Employee already exists", e.getMessage());
         }
     }

@@ -89,5 +89,10 @@ public class TransferMapper {
     }
 
     public static List<Transfer> getTransfersByVacancyId(int id) {
+        return null; //TODO
+    }
+
+    public static void update(int id, boolean b) {
+        //TODO
     }
 }
