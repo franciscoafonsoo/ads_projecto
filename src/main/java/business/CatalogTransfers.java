@@ -10,22 +10,6 @@ import java.util.*;
 
 public class CatalogTransfers {
 
-    public static List<Vacancy> consultAllVacancies() throws ApplicationException {
-        try {
-            return VacancyMapper.getAllVacancies();
-        } catch (PersistenceException e1) {
-            throw new ApplicationException("Unable to get Vacancies", e1);
-        }
-    }
-
-    public static List<Vacancy> consultVacanciesByStore(int storeId) throws ApplicationException {
-        try {
-            return VacancyMapper.getAllVacanciesByStoreId(storeId);
-        } catch (PersistenceException e1) {
-            throw new ApplicationException("Unable to get Vacancies", e1);
-        }
-    }
-
     public static int requestTransfer(Vacancy vacancy, Employee employee) throws ApplicationException{
         try {
             if (vacancy != null)

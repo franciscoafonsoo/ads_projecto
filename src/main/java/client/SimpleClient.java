@@ -43,6 +43,7 @@ public class SimpleClient {
 		CatalogEmployee employeeCatalog = new CatalogEmployee();
 		CatalogStore storeCatalog 		= new CatalogStore();
 		CatalogTransfers transfersCatalog = new CatalogTransfers();
+		CatalogVacancies vacanciesCatalog = new CatalogVacancies();
 
 		// this client deals with the Process Sale use case
 		HandlerProcessSale hps	= new HandlerProcessSale(saleCatalog);
@@ -54,7 +55,7 @@ public class SimpleClient {
 		HandleInsertEmployee hie 	= new HandleInsertEmployee(employeeCatalog, storeCatalog);
 
 		// this client deals with the Request Transfer
-		HandleRequestTransfer hrf 	= new HandleRequestTransfer(employeeCatalog, transfersCatalog);
+		HandleRequestTransfer hrf 	= new HandleRequestTransfer(employeeCatalog, transfersCatalog, vacanciesCatalog);
 
 		// this client deals with the Process Transfer
 		HandleProcessTransfer hpt 	= new HandleProcessTransfer(employeeCatalog, storeCatalog, transfersCatalog);
